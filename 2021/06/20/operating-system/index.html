@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    <meta name="description" content="dswen">
+    <meta name="author" content="dongshiwen">
+    
+    <title>
+        
+            操作系统实验思考 |
+        
+        dswen&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    
+<link rel="stylesheet" href="/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/css/v5-font-face.min.css">
+
+    
+<link rel="stylesheet" href="/css/duotone.min.css">
+
+    
+<link rel="stylesheet" href="/css/brands.min.css">
+
+    
+<link rel="stylesheet" href="/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/css/brands.min.css">
+
+    
+<link rel="stylesheet" href="/css/css2.css">
+
+    <link rel="stylesheet" href="//evan.beee.top/css/waline.css"/>
+    <script src="//evan.beee.top/js/waline.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script id="hexo-configurations">
+    let REDEFINE = window.REDEFINE || {};
+    REDEFINE.hexo_config = {"hostname":"dongshiwen02.github.io","root":"/","language":"zh-CN","path":"search.xml"};
+    REDEFINE.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#005080","avatar":"/images/avatar.svg","favicon":"/images/logo.svg","article_img_align":"center","left_side_width":"240px","content_max_width":"960px","nav_color":{"left":"#f78736","right":"#367df7","transparency":35},"hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_image":{"light":"/images/wallhaven-bg-light.webp","dark":"/images/wallhaven-bg-dark.webp"},"title_color":{"light":"#fff","dark":"#323739"},"description":"真诚热烈 向阳而生"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"0.3.3"};
+    REDEFINE.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+    
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                dswen&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/msg-board"
+                            >
+                                MSG BOARD
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/msg-board">MSG BOARD</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation"><h1 style="font-size:2rem; font-weight: bold; margin: 10px 0;">操作系统实验思考</h1></span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">dongshiwen</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-duotone fa-pen-line"></i>&nbsp;
+        <span class="pc">2021-06-20 16:16:33</span>
+        <span class="mobile">2021-06-20 16:16</span>
+    </span>
+    
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h2 id="进程-线程的同步与互斥"><a href="#进程-线程的同步与互斥" class="headerlink" title="进程/线程的同步与互斥"></a>进程/线程的同步与互斥</h2><h3 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h3><p>进程间的相互制约有直接制约和间接制约两种不同的方式。</p>
+<p>在生产者与消费者问题中，生产者不断的向缓冲区中写入数据，而消费者则从缓冲区中读取数据。生产者进程和消费者对缓冲区的操作是互斥，即当前只能有一个进程对这个缓冲区进行操作，生产者进入操作缓冲区之前，先要看缓冲区是否已满，如果缓冲区已满，则它必须等待消费者进程将数据取出才能写入数据，同样的，消费者进程从缓冲区读取数据之前，也要判断缓冲区是否为空，如果为空，则必须等待生产者进程写入数据才能读取数据。生产者和消费者对缓冲区互斥访问是互斥关系，同时生产者和消费者又是一个相互协作的关系，只有生产者生产之后，消费者只能才能消费，它们还是同步关系。</p>
+<p>经思考，我决定采用信号量机制进行进程之间的通信，设置两个信号量，空的信号量和满的信号量。使用信号量机制可以实现进程之间的同步和互斥，允许并发进程一次对一组信号量进行相同或不同的操作。在进程终止时，系统可根据需要自动消除所有被进程操作过的信号量的影响。</p>
+<h3 id="解决过程与分析"><a href="#解决过程与分析" class="headerlink" title="解决过程与分析"></a>解决过程与分析</h3><ol>
+<li>编写信号量方法<br>信号量方法里主要目的是编写P操作方法和V操作方法。用synchronized修饰同步方法，保证A线程执行该方法的时候，其他线程只能在方法外等着。在P操作方法中，利用wait()方法，使得当缓冲区已满/空时，生产者或消费者线程停止自己的执行，释放锁，使自己处于等待状态，让其它线程执行。在V操作方法中，利用notify()方法，当生产者或消费者向缓冲区放入或取出一个产品时，向其他等待的线程发出通知，同时释放锁，使自己处于等待状态，让其它线程执行。<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">class Semaphore</span><br><span class="line">&#123;</span><br><span class="line">    public int value;</span><br><span class="line">    public Semaphore(int value)</span><br><span class="line">    &#123;</span><br><span class="line">        super();</span><br><span class="line">        this.value=value;</span><br><span class="line">    &#125;</span><br><span class="line">    //P操作</span><br><span class="line">    public synchronized final void P()&#123;</span><br><span class="line">        value--;</span><br><span class="line">        if(value&lt;0)</span><br><span class="line">        &#123;</span><br><span class="line">            try</span><br><span class="line">            &#123;</span><br><span class="line">                this.wait();</span><br><span class="line">            &#125;catch(InterruptedException e)</span><br><span class="line">            &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    //V操作</span><br><span class="line">    public synchronized final void V()</span><br><span class="line">    &#123;</span><br><span class="line">        value++;</span><br><span class="line">        if(value&lt;=0)</span><br><span class="line">        &#123;</span><br><span class="line">            this.notify();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></li>
+<li>编写生产者方法<br>利用Runnable接口创建新进程，Runnable接口可以被任何想要被一个线程运行的接口继承实现。利用empty()方法获取空缓冲区单元，接着用mutex.P()进入临界区，用mutex.V()离开临界区并释放信号量，离开时满缓冲区数要加1。<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">class Producer implements Runnable</span><br><span class="line">&#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void run()</span><br><span class="line">    &#123;</span><br><span class="line">        Global.timingwait();</span><br><span class="line">        System.out.println(Thread.currentThread().getName() + &quot;  生产出一个商品&quot;);</span><br><span class="line">        Global.empty.P();//获取空缓冲区单元</span><br><span class="line">        Global.mutex.P();//进入临界区</span><br><span class="line">        Global.timingwait();</span><br><span class="line">        System.out.println(Thread.currentThread().getName() + &quot;  将产品放入缓冲区--缓冲区剩余 &quot; + (++Global.count) + &quot; 个产品&quot;);</span><br><span class="line">        Global.mutex.V();//离开临界区，释放信号量</span><br><span class="line">        Global.full.V();//满缓冲区数加一</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></li>
+<li>编写消费者方法<br>利用full.P()方法获取满缓冲区单元，然后利用mutex.P()进入临界区，从缓冲区中取出产品后，利用mutex.V()离开临界区，释放互斥信号量，并利用empty.V()将空缓冲区加1。<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">class Consumer implements Runnable</span><br><span class="line">&#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void run()</span><br><span class="line">    &#123;</span><br><span class="line">        Global.timingwait();</span><br><span class="line">        Global.full.P();//获取满缓冲区单元</span><br><span class="line">        Global.mutex.P();//进入临界区</span><br><span class="line">        Global.timingwait();</span><br><span class="line">        System.out.println(Thread.currentThread().getName() + &quot;  从缓冲区取出一个产品--缓冲区剩余 &quot;+ (--Global.count) + &quot; 个产品&quot;);</span><br><span class="line">        Global.mutex.V();//离开临界区，释放互斥信号量</span><br><span class="line">        Global.empty.V();//空缓冲区加一</span><br><span class="line">        System.out.println(Thread.currentThread().getName() + &quot;  消费一个商品&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></li>
+</ol>
+<h3 id="调试问题及解决方案"><a href="#调试问题及解决方案" class="headerlink" title="调试问题及解决方案"></a>调试问题及解决方案</h3><p>需要注意对缓冲区大小为n的处理，当缓冲区中有空时，便可对empty变量执行P操作，一旦取走一个资源便可执行V操作以释放空闲区。对empty和full变量的P操作必须放在mutex的P操作之前。</p>
+<h3 id="创新部分及思考"><a href="#创新部分及思考" class="headerlink" title="创新部分及思考"></a>创新部分及思考</h3><p>为了更加直观地表示出运行结果，我们在生产者将商品放入缓冲区，以及消费者从缓冲区内拿到商品后，利用Global(count)显示出缓冲区剩余的商品数，这样能更加清晰地显示出生产者和消费者在进行操作后缓冲区的变化。</p>
+<h2 id="处理机调度"><a href="#处理机调度" class="headerlink" title="处理机调度"></a>处理机调度</h2><h3 id="问题分析-1"><a href="#问题分析-1" class="headerlink" title="问题分析"></a>问题分析</h3><p>按优先权调度算法实现处理器调度的程序：<br>假定系统有五个进程，每一个进程用一个进程控制块 PCB 来代表。在每次运行你所设计的处理器调度程序之前，为每个进程任意确定它的“优先数” 和“要求运行时间”。为了调度方便，把五个进程按给定的优先数从大到小连成队列。用一单元指出队首进程，用指针指出队列的连接情况。处理器调度总是选队首进程运行。采用动态改变优先数的办法，进程每运行一次优先数就减“1”。</p>
+<p>按时间片轮转法实现处理器调度的程序：<br>有两种状态，“就绪”和“结束”，初始状态都为“就绪”，用“R”表示。 当一个进程运行结束后，它的状态为“结束”，用“E”表示。每次运行所设计的处理器调度程序前，为每个进程任意确定它的“要求运行时间”。把五个进程按顺序排成循环队列，用指针指出队列连接情况。另用一标志单元记录轮到运行的进程。</p>
+<h3 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h3><p>需要将逻辑地址转换为对应的页号以及页内位移，构造数组table进行逻辑地址的记录。<br>可假设有三种状态，“就绪”状态（ready）、“运行”状态（working）和 “结束”状态（finish）。五个进程的初始状态都为“就绪”，用“R”表示；当进程运行结束后，它的状态为“结束”，用“E”表示；当进程被选中开始运行但尚未结束时，它的状态为“运行”，用“W”表示。 </p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">public class Priority &#123;</span><br><span class="line">    public static void getMax(Queue&lt;PCB&gt; queue) &#123;</span><br><span class="line">        //找出优先级最高（优先级数最小）的进程</span><br><span class="line">        int minPriorityNum = 100;</span><br><span class="line">        int minArrivalTime = 100;</span><br><span class="line">        for(PCB q : queue ) &#123;</span><br><span class="line">            if(q.getPriorityNum() &lt; minPriorityNum) &#123;</span><br><span class="line">                minPriorityNum = q.getPriorityNum();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        //找出优先级最高且到达时间最早的进程</span><br><span class="line">        for(PCB q : queue ) &#123;</span><br><span class="line">            if(q.getPriorityNum() == minPriorityNum &amp;&amp; q.getArrivalTime() &lt; minArrivalTime) &#123;</span><br><span class="line">                minArrivalTime = q.getArrivalTime();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        PCB first = queue.peek();</span><br><span class="line">        for(int i = 0;i &lt; queue.size();i++) &#123;</span><br><span class="line">            while(queue.peek().getPriorityNum() &gt; minPriorityNum) &#123;</span><br><span class="line">                queue.offer(queue.peek());</span><br><span class="line">                queue.poll();</span><br><span class="line">            &#125;</span><br><span class="line">            PCB q =  ((LinkedList&lt;PCB&gt;) queue).get(i);</span><br><span class="line"></span><br><span class="line">            if(!q.equals(first)) &#123;</span><br><span class="line">                if((q.getPriorityNum() == queue.peek().getPriorityNum()) &amp;&amp; q.getArrivalTime() &lt; queue.peek().getArrivalTime()) &#123;</span><br><span class="line">                    while(queue.peek().getArrivalTime() != minArrivalTime) &#123;</span><br><span class="line">                        queue.offer(queue.peek());</span><br><span class="line">                        queue.remove(queue.peek());</span><br><span class="line">                        queue.remove(0);</span><br><span class="line">                        //i--;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;else &#123;</span><br><span class="line">                    continue;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;else &#123;</span><br><span class="line">                continue;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></div>
+<p>每次运行所设计的处理器调度程序前，为每个进程任意确定它的“要求运行时间”。 在实际的系统中，当一个进程被选中运行时，必须置上该进程可以运行的 时间片值，以及恢复进程的现场，让它占有处理器运行，直到出现等待事件或运行满一个时间片。在这时省去了这些工作，仅用“已运行时间+1”来表示进程已经运行满一个时间片。程运行一次后，应把该进程的进程控制块中的指针值送到标志单元，以指示下 一个轮到运行的进程。同时，应判断该进程的要求运行时间与已运行时间，若该进程的要求 运行时间¹已运行时间，则表示它尚未执行结束，应待到下一轮时再运行。若该进程的要求 运行时间=已运行时间，则表示它已经执行结束，应指导它的状态修改成“结束”（E）且退出队列。此时，应把该进程的进程控制块中的指针值送到前面一个进程的指针位置。 </p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">public void RRAlgorithm() &#123;</span><br><span class="line">        mReadyQueue.add(mUnreachQueue.poll());</span><br><span class="line">        Process currProcess = mReadyQueue.poll();</span><br><span class="line">        //第一个进程执行</span><br><span class="line">        int currTime = executeProcess(currProcess, 0);</span><br><span class="line"></span><br><span class="line">        while(!mReadyQueue.isEmpty() || !mUnreachQueue.isEmpty()) &#123;</span><br><span class="line">            //把所有“到达时间”达到的进程加入运行队列头部</span><br><span class="line">            while(!mUnreachQueue.isEmpty()) &#123;</span><br><span class="line">                if(mUnreachQueue.peek().getArrivalTime() &lt;= currTime) &#123;</span><br><span class="line">                    mReadyQueue.add(mUnreachQueue.poll());</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            if(currProcess.getRemainServiceTime() &gt; 0) mReadyQueue.add(currProcess);</span><br><span class="line">            //运行队列不为空时</span><br><span class="line">            if(!mReadyQueue.isEmpty()) &#123;</span><br><span class="line">                currProcess = mReadyQueue.poll();</span><br><span class="line">                currTime = executeProcess(currProcess, currTime);</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                //当前没有进程执行，但还有进程为到达，时间直接跳转到到达时间</span><br><span class="line">                currTime = mUnreachQueue.peek().getArrivalTime();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></div>
+<h3 id="实验结果总结"><a href="#实验结果总结" class="headerlink" title="实验结果总结"></a>实验结果总结</h3><p>优先权调度算法：优先级可以是静态赋予：创建任务的时候，就指定优先级大小，并且保持不变，直到任务结束。也可以是动态赋予：优先级在执行任务中动态改变。为了防止高优先级进程无休止地运行下去，调度程序可以在每个时钟中断降低当前进程的优先级。</p>
+<p>时间片轮转法的性能很大程度上依赖于时间片的大小。如果时间片足够大，那么它就退化为先来先服务调度算法；若时间片很小，则处理机将在进程间过于频繁地切换，使处理机开销过大。</p>
+<p>在平时中，我们可以把不同的任务划分为不同的优先级，然后在相同优先级的任务中使用时间片轮转。</p>
+<h2 id="存储管理"><a href="#存储管理" class="headerlink" title="存储管理"></a>存储管理</h2><h3 id="问题分析-2"><a href="#问题分析-2" class="headerlink" title="问题分析"></a>问题分析</h3><p>分页式虚拟存储系统是把作业信息的副本存放在磁盘上，当作业被选中时，可把 作业的开始几页先装入主存且启动执行。为此，在为作业建立页表时，应说明哪些页已在主存，哪些页尚未装入主存。作业执行时，指令中的逻辑地址指出了参加运算的操作数存放的页号和单元号， 硬件的地址转换机构按页号查页表，若该页对应标志为“1”，则表示该页已在主存，这时根据关系式计算出出欲访问的主存单元地址。设计一个“地址转换”程序来模拟硬件的地址转换工作。当访问的页在主存时，则形成绝对地址，但不去模拟指令的执行，而用输出转换后的地址来代替一条指令的执行。</p>
+<p>每访问一个地址时，首先要计算该地址所在的页的页号，然后查页表，判断该页是否在主存——如果该页已在主存，则打印页表情况；同时输出绝对地址。如果该页不在主存且页表已满，则按淘汰算法淘汰一页后调入所需的页（只将该页在页表中标志位进行修改），打印页表情况，逐个地址访问，直到所有地址访问完毕。</p>
+<h3 id="解决过程-1"><a href="#解决过程-1" class="headerlink" title="解决过程"></a>解决过程</h3><p>将逻辑地址转换为对应的页号以及页内位移，构造数组table进行逻辑地址的记录。 </p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">    Yetable[] table = new Yetable[7];</span><br><span class="line">    table[0]=new Yetable(0,1,5,0,&quot;011&quot;);</span><br><span class="line">    table[1]=new Yetable(1,1,8,0,&quot;012&quot;);</span><br><span class="line">    table[2]=new Yetable(2,1,9,0,&quot;013&quot;);</span><br><span class="line">    table[3]=new Yetable(3,1,1,0,&quot;021&quot;);</span><br><span class="line">    table[4]=new Yetable(4,0,0,&quot;022&quot;);</span><br><span class="line">    table[5]=new Yetable(5,0,0,&quot;023&quot;);</span><br><span class="line">    table[6]=new Yetable(6,0,0,&quot;121&quot;);</span><br><span class="line">    int[] tihuan = new int[]&#123;0,1,2,3&#125;;</span><br><span class="line">    int yeno;</span><br><span class="line">    Scanner scan = new Scanner(System.in);</span><br><span class="line">    int dizhi;</span><br><span class="line">    int jueduidizhi;</span><br><span class="line">    int flag=0;</span><br><span class="line">    int a=0;</span><br><span class="line">    System.out.println(&quot;页号  &quot;+&quot;标志  &quot;+&quot;主存块号&quot;+&quot;修改标志&quot;+&quot;磁盘位置&quot;);</span><br><span class="line">    for(int j=0;j&lt;table.length;j++)&#123;</span><br><span class="line">        System.out.println(table[j].yeno+&quot;    &quot;+table[j].logo+&quot;    &quot;+table[j].kuaino+&quot;      &quot;+table[j].xiugai+&quot;      &quot;+table[j].home);</span><br><span class="line">    &#125;</span><br><span class="line">    while(true)&#123;</span><br><span class="line">        System.out.println(&quot;请输入要访问的页号:&quot;);</span><br><span class="line">        yeno = scan.nextInt();</span><br><span class="line">        System.out.println(&quot;请输入页号的页内地址:&quot;);</span><br><span class="line">        dizhi =scan.nextInt();</span><br><span class="line">        for(int i=0;i&lt;table.length;i++)&#123;</span><br><span class="line">            if(yeno==table[i].yeno)&#123;</span><br><span class="line">                a++;</span><br><span class="line">                if(table[i].logo==1)&#123;</span><br><span class="line">                    System.out.println(&quot;页号  &quot;+&quot;标志  &quot;+&quot;主存块号&quot;+&quot;修改标志&quot;+&quot;磁盘位置&quot;);</span><br><span class="line">                    for(int j=0;j&lt;table.length;j++)&#123;</span><br><span class="line">                        System.out.println(table[j].yeno+&quot;    &quot;+table[j].logo+&quot;    &quot;+table[j].kuaino+&quot;      &quot;+table[j].xiugai+&quot;      &quot;+table[j].home);</span><br><span class="line">                    &#125;</span><br><span class="line">                    jueduidizhi=table[i].kuaino*1024+dizhi;</span><br><span class="line">                    System.out.println(&quot;绝对地址:&quot;+jueduidizhi);</span><br><span class="line">                    break;</span><br><span class="line">                &#125;else&#123;</span><br><span class="line">                    if(flag==4)&#123;</span><br><span class="line">                        flag=1;</span><br><span class="line">                    &#125;</span><br><span class="line">                    table[i].logo=1;</span><br><span class="line">                    int m=tihuan[flag];</span><br><span class="line">                    table[m].logo=0;</span><br><span class="line">                    table[i].kuaino=table[m].kuaino;</span><br><span class="line">                    table[m].kuaino=0;</span><br><span class="line">                    tihuan[flag]=table[i].yeno;</span><br><span class="line">                    flag++;</span><br><span class="line">                    System.out.println(&quot;页号  &quot;+&quot;标志  &quot;+&quot;主存块号&quot;+&quot;修改标志&quot;+&quot;磁盘位置&quot;);</span><br><span class="line">                    for(int j=0;j&lt;table.length;j++)&#123;</span><br><span class="line">                        System.out.println(table[j].yeno+&quot;    &quot;+table[j].logo+&quot;    &quot;+table[j].kuaino+&quot;      &quot;+table[j].xiugai+&quot;      &quot;+table[j].home);</span><br><span class="line">                    &#125;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        if(a==0)&#123;</span><br><span class="line">            System.out.println(&quot;无此页号!&quot;);</span><br><span class="line">            continue;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="调度算法思考"><a href="#调度算法思考" class="headerlink" title="调度算法思考"></a>调度算法思考</h2><p>先进先出页面调度算法即FIFO。优先淘汰最早进入内存的页面，即在内存中驻留时间最久的页面。类似于数据结构中的队列。在实现上，把调入内存的页面根据先后次序链接成队列，设置一个指针总是指向页面队列的第一个页面，若还有空闲页，直接入队，没有空闲页，每次把指针指向的第一个页面置换掉即可。</p>
+<p>最近最少使用即LRU页面调度算法，是当有空闲页面时直接调入，没有空闲页面时，选择最近最长时间没有访问过的页面进行淘汰并将新页面调入，认为过去一段时间内未访问过的页面在之后的一段时间也不太可能会被访问。通常需要设置一个标记位来记录页面未被访问的次数，页满时选择标记位最大的一个页面淘汰。</p>
+<p>先进先出页面调度算法性能不好，但实现简单，基于队列实现的，与进程运行的状态不协调，因为进程会经常访问某些页面，并且先进先出可能会出现belady现象，即可分配的物理块数增多但缺页次数可能不减反增。<br>最近最少未使用算法开销大，性能好，需要硬件支持，属于堆栈类算法，与程序运行规律比较一致，通常比先进先出更常用。</p>
+<p>每个文件都有其对应的文件控制快（FCB）包含了对文件进行控制的名称、标识符、类型、位置、大小等属性，通过操作系统提供的文件管理系统可以对文件进行创建、删除、读、写等操作。文件都是存放在目录下的，常用的操作系统会使用树形的目录结构来实现多级目录和按名存取。</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>本文标题：操作系统实验思考</li>
+        <li>本文作者：dongshiwen</li>
+        <li>创建时间：2021-06-20 16:16:33</li>
+        <li>
+            本文链接：https://dongshiwen02.github.io/2021/06/20/operating-system/
+        </li>
+        <li>
+            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2022/11/28/hello-world/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Hello World</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2021/02/26/social-practice-research/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">赴冀鲁豫纪念馆社会实践有感</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
+
+        
+            
+ 
+    <div id="waline"></div>
+    <script data-pjax>
+        Waline.init({
+            el: '#waline',
+            serverURL: 'https://waline-for-comment.vercel.app/',
+            lang: 'zh-CN',
+            dark: 'auto',
+            requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
+        });
+    </script>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">dongshiwen</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v0.3.3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fa-duotone fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-duotone fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div style="font-size: 1.3rem;margin-top: 0; margin-bottom: 0.8rem; transition-duration: 0.1s;"><i class="fa-solid fa-list-tree"></i> <strong>目录</strong></div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B-%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%90%8C%E6%AD%A5%E4%B8%8E%E4%BA%92%E6%96%A5"><span class="nav-text">进程&#x2F;线程的同步与互斥</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90"><span class="nav-text">问题分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E8%BF%87%E7%A8%8B%E4%B8%8E%E5%88%86%E6%9E%90"><span class="nav-text">解决过程与分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B0%83%E8%AF%95%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-text">调试问题及解决方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E6%96%B0%E9%83%A8%E5%88%86%E5%8F%8A%E6%80%9D%E8%80%83"><span class="nav-text">创新部分及思考</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%84%E7%90%86%E6%9C%BA%E8%B0%83%E5%BA%A6"><span class="nav-text">处理机调度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90-1"><span class="nav-text">问题分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E8%BF%87%E7%A8%8B"><span class="nav-text">解决过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E7%BB%93%E6%9E%9C%E6%80%BB%E7%BB%93"><span class="nav-text">实验结果总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86"><span class="nav-text">存储管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90-2"><span class="nav-text">问题分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E8%BF%87%E7%A8%8B-1"><span class="nav-text">解决过程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95%E6%80%9D%E8%80%83"><span class="nav-text">调度算法思考</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            REDEFINE.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            REDEFINE.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            REDEFINE.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

@@ -171,28 +171,71 @@
 </tr>
 </tbody></table>
 <p>事件流：（1）基本流 当政府账号登陆成功决定设计调查问卷的时候用例开始<br>①政府或者校方登陆系统<br>②系统判断用户权限等级，高权限级别进行问卷设计，低权限事件流结束<br>（2）备选流<br>①进行问卷设计，选择新建项目或者在工作台编辑未完成的缓存项目<br>②如果选择新建项目，则选择一个模板进行设计<br>③进行问题类型的选择和设计，分为选择题和填空题<br>④问卷未完成退出系统会保存当前编辑状态并存储至工作台，若完成则保存问卷等待发送，移出工作台<br>（3）异常流<br>用户登录使用的账号不存在，提示注册或者更换账号登录。<br>登录密码错误提示重新输入，输错5次后会锁定10分钟<br>后置条件    问卷保存在系统中等待校方信息录入后进行发布<br>扩展点    根据问卷设计者选择的问卷主题提供对应的题库进行参考<br>优先级    高</p>
-<p><img  
+<p>设计调查问卷交互图：<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/images/software-requirement-analysis/model_design.png"
-                      alt="软件逻辑架构设计" title="软件逻辑架构设计"
-                ><br>设计调查问卷交互图：<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="/images/software-requirement-analysis/questionnaire_interaction_diagram.png"
+                     data-src="/images/software-requirement-analysis/questionnaire_interaction_diagram.jpg"
                       alt="设计调查问卷交互图" title="设计调查问卷交互图"
                 ></p>
 <p>导入学生和教师数据交互图：<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/images/software-requirement-analysis/data_transfer.png"
+                     data-src="/images/software-requirement-analysis/data_transfer.jpg"
                       alt="导入学生和教师数据交互图" title="导入学生和教师数据交互图"
                 ></p>
 <p>发布问卷交互图:<br><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="/images/software-requirement-analysis/questionnaire_publish.png"
+                     data-src="/images/software-requirement-analysis/questionnaire_publish.jpg"
                       alt="发布问卷交互图" title="发布问卷交互图"
+                ></p>
+<h3 id="功能模块划分"><a href="#功能模块划分" class="headerlink" title="功能模块划分"></a>功能模块划分</h3><h4 id="模块-描述"><a href="#模块-描述" class="headerlink" title="模块-描述"></a>模块-描述</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/software-requirement-analysis/module_description.png"
+                      alt="模块描述" title="模块描述"
+                ></p>
+<table>
+<thead>
+<tr>
+<th>模块名称</th>
+<th>模块功能（职责）概述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>问卷处理模块</td>
+<td>对问卷进行基本操作的功能模块，根据用户点击界面获得的请求信息，调用模块中对应的子系统对问卷进行对应的操作</td>
+</tr>
+<tr>
+<td>信息数据管理模块</td>
+<td>此模块包含系统的各种数据库文件以及维护，主要功能是存储系统的各项数据内容（用户信息，问卷信息）、对数据进行维护、以及对外界请求发生数据的功能。当用户请求访问数据时，返回被访数据</td>
+</tr>
+<tr>
+<td>信息查询模块</td>
+<td>此模块是中介模块，负责处理用户访问数据的请求，判断是否允许该请求查询数据和处理数据请求的范围，并传递给信息数据管理模块进行具体操作</td>
+</tr>
+<tr>
+<td>用户界面模块</td>
+<td>此模块包含所有的用户界面，根据登陆人员的权限跳转到不同的用户界面，更具界面点击获得的反馈跳转到各个功能界面</td>
+</tr>
+</tbody></table>
+<h4 id="模块-接口设计"><a href="#模块-接口设计" class="headerlink" title="模块-接口设计"></a>模块-接口设计</h4><ol>
+<li>用户界面模块: 此模块的接口需要和信息数据管理系统对接，获取信息，然后调用正确的界面。用户类User,接收参数为String username,String password。用户未注册时首先进行注册，注册成功后将用户信息传递到数据库中，注册成功后根据匹配数据库中的用户信息进行登录并跳转到不同权限用户的管理界面，在信息管理系统中可以对用户信息进行增删改查操作。</li>
+<li>问卷处理模块：包括问卷设计Designer和问卷发布Publisher。<br>问卷设计Designer接收参数为Questionnaire Questionnaire,可以获得问卷设计的数量，对问卷进行增删改查等操作。问卷发布Publisher接收参数为Que Questionnaire,用来确认是否发布问卷以及问卷是否终止。</li>
+<li>信息查询模块：此模块接口接受问卷处理模块和界面模块的数据查询请求，处理后传递给信息数据管理模块打开对应的系统。</li>
+<li>信息数据管理模块：包括用户信息管理，问卷数据管理Analyst和<br>待问卷人员信息管理Responder。用户信息管理将会在用户注册之后将用户信息存储在数据库中，问卷数据管理Analyst接收参数为Q Questionnaire,接受问卷调查人员所填的问卷，判断问卷是否合规，将符合规范的问卷进行分析并将结果显示在高权限用户人员的界面中。</li>
+</ol>
+<h3 id="系统概念架构设计"><a href="#系统概念架构设计" class="headerlink" title="系统概念架构设计"></a>系统概念架构设计</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/software-requirement-analysis/system_conceptual_architecture_design.png"
+                      alt="系统概念架构设计" title="系统概念架构设计"
+                ></p>
+<h3 id="数据库逻辑架构设计"><a href="#数据库逻辑架构设计" class="headerlink" title="数据库逻辑架构设计"></a>数据库逻辑架构设计</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/software-requirement-analysis/sql_design.png"
+                      alt="数据库逻辑架构设计" title="数据库逻辑架构设计"
                 ></p>
 ]]></content>
   </entry>
@@ -219,6 +262,129 @@
 <p>FPGA 器件属于专用集成电路中的一种半定制电路，是可编程的逻辑列阵，能够有效的解决原有的器件门电路数较少的问题。FPGA 的基本结构包括可编程输入输出单元，可配置逻辑块，数字时钟管理模块，嵌入式块RAM，布线资源，内嵌专用硬核，底层内嵌功能单元。<br>通过对FPGA电路的学习和实验，我对计算机组成原理的课程有了更深的认识，同时，它以一种简洁，快速的方式展现了软件的编程是如何在计算机的内部运行并发挥作用的，就如同一座桥连通了软件编程和硬件的功能。通过编写设计文件和约束文件，用USB输入给电路板，即可在硬件上体现出软件设计的功能。</p>
 <h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>前期，我学习了计算机组成原理这门课程，在学习中，掌握了一些基础理论，但是实践才是检验真理的唯一标准，通过这几次实验，我才真正理解计算机的基本组成与工作原理，了解计算机的内部运行机理，掌握计算机系统设计的基本技术，更重要的是通过实验培养了我们独立分析、解决问题的能力。</p>
 <p>这几次实验使我对单处理机系统的组成和工作原理、并行体系结构有了更深刻的了解和认识。这对于建立整机概念，研究各功能部件的相互连接与相互作用，进行各功能部件的逻辑设计，都有很大的帮助。我掌握寄存器器件和寄存器组的工作原理，了解COP2000模型机所用主要寄存器的位置、作用、数据通路及控制信号;了解运算器模块如何连接以及数据通路;领会了课堂教学中关于ALU的功能特性的知识;学会用CPLD实现运算器。掌握运算器核心器件ALU的输出连入数据总线前常见处理方法;掌握控制器的工作原理;掌握由控制器、运算器、存储器、组成的模型机的工作原理;通过运行各种简单程序，掌握机器指令和微指令的关系等等。我很珍惜这次在实验中的思考与感悟，并且以后也会多多接触计算机组成原理的相关知识，拓宽自己的知识面。</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>通信概论之调幅及恒比码</title>
+    <url>/2020/12/29/introduction-to-communication/</url>
+    <content><![CDATA[<h3 id="关于AM四种方法的探究与分析"><a href="#关于AM四种方法的探究与分析" class="headerlink" title="关于AM四种方法的探究与分析"></a>关于AM四种方法的探究与分析</h3><h4 id="关于调幅"><a href="#关于调幅" class="headerlink" title="关于调幅"></a>关于调幅</h4><p>调幅（Amplitude Modulation，AM），也就是通常说的中波，范围在530—1600KHz。调幅是用声音的高低变为幅度的变化的电信号。传输距离较远，但受天气因素影响较大，适合省际电台的广播。早期VHF频段的移动通信电台大都采用调幅方式，由于信道衰落会使模拟调幅产生附加调幅，造成失真，在传输的过程中也很容易被窃听，目前已很少采用。目前在简单通信设备中还有采用，如收音机中的AM波段就是调幅波，音质和FM波段调频波相比较差。</p>
+<h4 id="调幅的分类"><a href="#调幅的分类" class="headerlink" title="调幅的分类"></a>调幅的分类</h4><p>振幅调制可分为普通调幅（AM），双边带调幅（DSB-AM），单边带调幅（SSB-AM）与残留边带调幅（VSB-AM）几种不同方式。</p>
+<h4 id="调幅电路"><a href="#调幅电路" class="headerlink" title="调幅电路"></a>调幅电路</h4><p>调幅是使载波信号的幅度随着调制信号的幅度变化，载波的频率和相应不变。能够完成调幅功能的电路就叫调幅电路或调幅器。<br>调幅电路原理主要分为两类：高电平调幅电路和低电平调幅电路。</p>
+<p>高电平调幅要求电路的输出功率足够大。电路在调幅的同时，还进行功率放大。调制过程通常是在丙类放大级进行的。根据调制信号控制的电极不同，调制方法主要有集电极调幅、基极调幅、发射极调幅。</p>
+<h3 id="关于恒比码的思考与探索"><a href="#关于恒比码的思考与探索" class="headerlink" title="关于恒比码的思考与探索"></a>关于恒比码的思考与探索</h3><h4 id="恒比码的概念"><a href="#恒比码的概念" class="headerlink" title="恒比码的概念"></a>恒比码的概念</h4><p>在每个字符或功能信号中使用的各类码元均具有指定数目的检错码。在采用恒比码编码的体系中，所有有效的编码中为1的位都相同，所以被称为恒比。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/introduction-to-communication/constant_ratio_code.png"
+                      alt="恒比码" title="恒比码"
+                ></p>
+<h4 id="恒比码的种类"><a href="#恒比码的种类" class="headerlink" title="恒比码的种类"></a>恒比码的种类</h4><p>常用的恒比码有两种，一种是7中取3码，即一个代码的7个码元中恒定保持3个1，4个0的比例，另一种是8中取4。这两种恒比码检错的基本原理都是相同的。<br>采用7中取3码时，全部比特均编成具有7个码元的代码，但其中只有7!/3!/4!个代码字符是可用的。<br>7中取3码能检出全部单个错误，这是因为单个错误使代码中的1的个数为2或4个，成为非法码而被检出来。同理，对于奇数个错误可检出，但对偶个数错误却不能全部检出。<br>在国际上通用的ARQ电报通信系统采用了7中取3定比码。这种编码的不足之处是必须增加把字符编码转换为恒比码的设备。</p>
+<h4 id="恒比码的作用"><a href="#恒比码的作用" class="headerlink" title="恒比码的作用"></a>恒比码的作用</h4><p>能检测出全部奇数位错以及部分偶数位错，但码字中1变成0和0变成1成对出现的差错除外。简单，适用于用来传输电传机或其他键盘设备产生的字母和符号。因为每个汉字是以四位十进制数来代表的，所以提高十进制数字传输的可靠性，就等于提高汉字传输的可靠性。实践证明，采用这种码后，我国汉字电报的差错率大为降低。</p>
+<h4 id="恒比码的出现原因"><a href="#恒比码的出现原因" class="headerlink" title="恒比码的出现原因"></a>恒比码的出现原因</h4><p>我认为在信号传输中，编码和解码方式灵活多样，同时加上码间串扰，使得解码的正确率有所偏差。此时，我们需要一种方式能够方便并且较为准确地帮助我们来判断解码地正确性，恒比码作为方法中的一种，也应运而生。由于恒比码中1的数目和0的数目之比保持恒定，只需要检测接收码组中1的数目是否对，就可知道有无错误，所以检验方式较为便捷，由此发展起来，得到了广泛应用。</p>
+<h4 id="恒比码的发展"><a href="#恒比码的发展" class="headerlink" title="恒比码的发展"></a>恒比码的发展</h4><p>我认为恒比码作为一种检错码，可以很好的应用于信号传输时的检错，在信号传输正确性及效率方面有着独特的作用。而未来通信的检错发展，应该是检错效率高，正确性也较高的趋势，恒比码作为检错码，虽有着自己的检错方式，差错率也相应降低，但随着人们需求的扩张，必将出现检错效率更高的检错方式来代替恒比码，或者恒比码完善自己的种类，来适应不同情况下的信号检错，这样通信方面信号传输的正确率才会大大提高，从而适应未来通信发展的潮流。</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>数据结构实验</title>
+    <url>/2020/12/26/data-struct-research/</url>
+    <content><![CDATA[<h3 id="线性表的应用"><a href="#线性表的应用" class="headerlink" title="线性表的应用"></a>线性表的应用</h3><h4 id="实验内容"><a href="#实验内容" class="headerlink" title="实验内容"></a>实验内容</h4><p>进行集合运算，用线性表存储集合数据，并完成集合运算，至少包括集合的交集、并集、补集、差集。</p>
+<h4 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h4><p>首先分配内存空间，对线性表进行初始化，然后在线性表中插入元素e    。创建单链表的各节点，建立单链表。判断两元素是否相等，若相等则返回TRUE，否则返回FAISE。在顺序线性表L中查找第1个值与e满足compare()的元素的位。接着打印顺序表函数。编写函数实现两个集合的并运算，把数组A中各个元素先保存在数组C中。将数组B中的元素逐一与数组A中的元素进行比较，把不相同的元素添加到数组C中，数组C便是集合A和集合B的并集，编写函数实现两个集合的交运算，把数组A中元素逐一与数组B中的元素进行比较，将相同的元素放在数组C中，数组C便是集合A和集合B的交集。编写函数实现两个集合的差运算，将数组A中的元素逐一与数组B中的元素进行比较，把数组A与数组B不同的元素保存在数组C中，数组C便是集合A和集合B的差集。编写函数实现两个集合的补集运算。将数组E中的元素逐一与数组A中的元素进行比较，把不相同的元素保存到数组C中，数组C便是集合A关于集合E的补集。编写函数实现输入集合，选择操作等，最后进行实验结果的测试。</p>
+<p>编写函数实现两个集合的并运算。把数组A中各个元素先保存在数组C中。将数组B中的元素逐一与数组A中的元素进行比较，把不相同的元素添加到数组C中，数组C便是集合A和集合B的并集。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">void union(SqList La,SqList Lb,SqList &amp;Lc)&#123;</span><br><span class="line">	int i;</span><br><span class="line">	ElemType elem;</span><br><span class="line">	Lc.length=0;</span><br><span class="line">	for(i = 0; i &lt; La.length; i++)</span><br><span class="line">	Lc.elem[Lc.length++]=La.elem[i];</span><br><span class="line">	for(i = 1; i &lt;= Lb.length; i++)&#123;</span><br><span class="line">		elem = Lb.elem[i-1];</span><br><span class="line">		if(!LocateElem_Sq(La,elem,Equal))</span><br><span class="line">		ListInsert_Sq(Lc,Lc.length+1,elem);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>编写函数实现两个集合的交运算。把数组A中元素逐一与数组B中的元素进行比较，将相同的元素放在数组C中，数组C便是集合A和集合B的交集。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">void same(SqList La,SqList Lb,SqList &amp;Lc)&#123;</span><br><span class="line">	int i;</span><br><span class="line">	ElemType elem;</span><br><span class="line">	Lc.length = 0;</span><br><span class="line">	for(i = 1; i &lt;= La.length; i++)&#123;</span><br><span class="line">		elem = La.elem[i-1];</span><br><span class="line">		if(LocateElem_Sq(Lb,elem,Equal))</span><br><span class="line">		ListInsert_Sq(Lc,Lc.length+1,elem);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+<h3 id="栈和队列的应用"><a href="#栈和队列的应用" class="headerlink" title="栈和队列的应用"></a>栈和队列的应用</h3><h4 id="实验内容-1"><a href="#实验内容-1" class="headerlink" title="实验内容"></a>实验内容</h4><p>实现栈和队列的基本操作，并进行算术表达式求值：利用栈实现一个中缀表达式的求值。</p>
+<h4 id="实验步骤-1"><a href="#实验步骤-1" class="headerlink" title="实验步骤"></a>实验步骤</h4><p>首先初始化操作数栈，并进行操作数的进栈出栈，得到操作数栈的栈顶元素并打印，接着打印操作符中元素。初始化操作符栈，并进行操作符的进栈出栈，得到操作符栈顶元素。然后编写函数求表达式的长度，并判断操作符栈是否为空，接着判断符号优先级。编写函数实现四则运算并判断表达式是否符合四则运算。编写函数，输入表达式，并对相应的表达式进行计算，从而实现中缀表达式的求值。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">double calculate()&#123;</span><br><span class="line">    double a, result=0,x, y, b;</span><br><span class="line">    int i=0，j=0,k=0; //i，i为循环变最</span><br><span class="line">    char ch,s[100] ;</span><br><span class="line">    Node p1;//操作符栈</span><br><span class="line">    Stack p2;//操作数栈</span><br><span class="line">    InitStack (&amp;p2);</span><br><span class="line">    InitNode(&amp;p1);</span><br><span class="line">    printf(&quot;输入表计式(输入’#’代麦结束)\n&quot;) ;</span><br><span class="line">    gets(s) ;</span><br><span class="line">    while(s[i]!=&#x27;\0’&amp;&amp;i&lt;Length(s))&#123;</span><br><span class="line">        k=0;</span><br><span class="line">        b=0;</span><br><span class="line">        a=0;</span><br><span class="line">        j=i;</span><br><span class="line">        if(s[j&gt;=’O’&amp;&amp;s[j]&lt;=&#x27;9&#x27;)&#123;</span><br><span class="line">            while(s[j]&gt;=&#x27;0&#x27;&amp;&amp;s[j]&lt;=&#x27;9&#x27;)&#123;</span><br><span class="line">                a=(double)((s[j]-&#x27;0’)+a*10);</span><br><span class="line">                j++;</span><br><span class="line">            &#125;</span><br><span class="line">            if(s[j]==’.&#x27;)&#123;</span><br><span class="line">                j++;</span><br><span class="line">                if(s[j]&gt;=&#x27;0’&amp;&amp;s[j]&lt;=&#x27;9&#x27;)&#123;</span><br><span class="line">                   while(s[j]&gt;=’O&#x27;&amp;&amp;s[j]&lt;=&#x27;9&#x27;)&#123;</span><br><span class="line">                        b=(double)((s[j]-&#x27;0’)+b*10) ;</span><br><span class="line">                        k++;</span><br><span class="line">                        j++；</span><br><span class="line">                   &#125;</span><br><span class="line">                   for(i=0;i&lt;k;i++)&#123;</span><br><span class="line">                        b=b/(10.0);</span><br><span class="line">                        a=a+b;</span><br><span class="line">                   &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                i=--j;</span><br><span class="line">                PushStack (&amp;p2, a);</span><br><span class="line">        &#125;</span><br><span class="line">        else if(Isop(s[i])==1)&#123;</span><br><span class="line">            if(empty (&amp;p1))&#123;</span><br><span class="line">                PushNode (&amp;p1,sli]）;</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;</span><br><span class="line">                while( ! empty(&amp;p1))&#123;</span><br><span class="line">                    ch=getTopNode(&amp;p1);</span><br><span class="line">                    if(compare(ch)&gt;=compare(s[i]))&#123;</span><br><span class="line">                        x=PopStack(&amp;p2);</span><br><span class="line">                        y=PopStack(&amp;p2);</span><br><span class="line">                        result=add(y,ch, x) ;</span><br><span class="line">                        PopNode (&amp;p1);</span><br><span class="line">                        PushStack (&amp;p2,result) ;</span><br><span class="line">                    &#125;</span><br><span class="line">                    else break;</span><br><span class="line">                &#125;</span><br><span class="line">                if(s[i]!=’#’)</span><br><span class="line">                    PushNode(&amp;p1,s[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        else if(Isop(s[i])==2)&#123;</span><br><span class="line">            if(s[i]==&#x27;()&#123;</span><br><span class="line">               PushNode(&amp;p1,s[i]);</span><br><span class="line">            else&#123;</span><br><span class="line">                while(getTopNode(&amp;p1)!=’(’)&#123;</span><br><span class="line">                      ch=getTopNode(&amp;p1) ;</span><br><span class="line">                      x=PopStack(&amp;p2) ;</span><br><span class="line">                      y=PopStack (&amp;p2);</span><br><span class="line">                      result=add(y, ch,x);</span><br><span class="line">                      PopNode(&amp;p1) ;</span><br><span class="line">                      PushStack (&amp;p2,result);</span><br><span class="line">                      &#125;</span><br><span class="line">                      PopNode(&amp;p1);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        i++;</span><br><span class="line">&#125;</span><br><span class="line">    while(! empty(&amp;p1))&#123;</span><br><span class="line">        ch=getTopNode(&amp;p1) ;</span><br><span class="line">        x=PopStack (&amp;p2);</span><br><span class="line">        y=PopStack (&amp;p2);</span><br><span class="line">        result=add(y,ch,x) ;</span><br><span class="line">        PopNode(&amp;p1);</span><br><span class="line">        PushStack(&amp;p2, result) ;</span><br><span class="line">    &#125;</span><br><span class="line">    return getTopStack(&amp;p2);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="二叉树的应用"><a href="#二叉树的应用" class="headerlink" title="二叉树的应用"></a>二叉树的应用</h3><h4 id="实验内容-2"><a href="#实验内容-2" class="headerlink" title="实验内容"></a>实验内容</h4><p>使用树结构存储医院楼房结构，通过读取文件definition.txt文件创建树形结构，将树形结构创建后，可以读取queries.txt中的查询完成对应的操作。查询有几个子部件并且按照一定顺序打印出来。</p>
+<h4 id="实验步骤-2"><a href="#实验步骤-2" class="headerlink" title="实验步骤"></a>实验步骤</h4><p>使用结构体分别定义节点与树结构，用数组储存所有节点，始化节点和树结构后，可以进行创建树的操作。创建树结构后，使用递归的方法实现查找父节点和查找孩子节点的函数。根据文件读入的信息以及查找函数的遍历操作，对计算结果进行输出。<br>编写函数利用递归实现查找父节点:</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">void searchFatherNode(treeNode* node, char name[50], treeNode* &amp;mark)&#123;</span><br><span class="line">	if(node == NULL)&#123;</span><br><span class="line">		return;</span><br><span class="line">	&#125;</span><br><span class="line">	if(mark != NULL)&#123;</span><br><span class="line">		return;</span><br><span class="line">	&#125;</span><br><span class="line">	if(strcmp(name, node-&gt;name) == 0)&#123;</span><br><span class="line">		mark = node;</span><br><span class="line">		return;</span><br><span class="line">	&#125;</span><br><span class="line">	for(int i = 0; i &lt; 3; i++)&#123;</span><br><span class="line">		searchFatherNode(node-&gt;childNode[i], name, mark);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+<h3 id="图结构的应用"><a href="#图结构的应用" class="headerlink" title="图结构的应用"></a>图结构的应用</h3><h4 id="实验内容-3"><a href="#实验内容-3" class="headerlink" title="实验内容"></a>实验内容</h4><p>通过读取文件存储图中的数据，并完成图基本操作。输入起始城市和终点城市，可以给出两个城市的最小费用路线，并将路线给出。</p>
+<h4 id="实验步骤-3"><a href="#实验步骤-3" class="headerlink" title="实验步骤"></a>实验步骤</h4><p>使用三个结构体分别定义图的矩阵存储，权重以及最短路径。其中图结构中有顶点表，真实边数，真实顶点数，矩阵，权重结构体中存有距离和费用，最短路径中存有路径和费用。首先初始化邻接矩阵，存储地点的下表，对应行和列，来实现矩阵的赋值。初始化完成后，开始创建有向网。有向网创建成功后，输出结果进行打印。在求两个城市的最小费用路线时，利用迪杰斯特拉算法，得到的信息存储在最短路径结构体中，以便于后续对于最短路径的输出打印。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">typedef struct weight&#123;</span><br><span class="line">    int distance;//距离</span><br><span class="line">    int price;//费用</span><br><span class="line">&#125;Weight;//权值</span><br><span class="line"></span><br><span class="line">typedef struct graph&#123;</span><br><span class="line">    //VerTexType vexs[Max_Tex_Num];</span><br><span class="line">    char vexs[Max_Tex_Num][50];//顶点表（字符串类型数组)</span><br><span class="line">    int vexnum;//真实顶点数</span><br><span class="line">    int edgenum;//真实边数</span><br><span class="line">    Weight arcs[Max_Tex_Num][Max_Tex_Num];//矩阵/////</span><br><span class="line">&#125;AMGraph;//邻接矩阵</span><br><span class="line"></span><br><span class="line">struct shortestPath&#123;</span><br><span class="line">    int path;</span><br><span class="line">    int money;</span><br><span class="line">&#125;dij[Max_Tex_Num];</span><br></pre></td></tr></table></figure></div>
+]]></content>
+  </entry>
+  <entry>
+    <title>操作系统实验思考</title>
+    <url>/2021/06/20/operating-system/</url>
+    <content><![CDATA[<h2 id="进程-线程的同步与互斥"><a href="#进程-线程的同步与互斥" class="headerlink" title="进程/线程的同步与互斥"></a>进程/线程的同步与互斥</h2><h3 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h3><p>进程间的相互制约有直接制约和间接制约两种不同的方式。</p>
+<p>在生产者与消费者问题中，生产者不断的向缓冲区中写入数据，而消费者则从缓冲区中读取数据。生产者进程和消费者对缓冲区的操作是互斥，即当前只能有一个进程对这个缓冲区进行操作，生产者进入操作缓冲区之前，先要看缓冲区是否已满，如果缓冲区已满，则它必须等待消费者进程将数据取出才能写入数据，同样的，消费者进程从缓冲区读取数据之前，也要判断缓冲区是否为空，如果为空，则必须等待生产者进程写入数据才能读取数据。生产者和消费者对缓冲区互斥访问是互斥关系，同时生产者和消费者又是一个相互协作的关系，只有生产者生产之后，消费者只能才能消费，它们还是同步关系。</p>
+<p>经思考，我决定采用信号量机制进行进程之间的通信，设置两个信号量，空的信号量和满的信号量。使用信号量机制可以实现进程之间的同步和互斥，允许并发进程一次对一组信号量进行相同或不同的操作。在进程终止时，系统可根据需要自动消除所有被进程操作过的信号量的影响。</p>
+<h3 id="解决过程与分析"><a href="#解决过程与分析" class="headerlink" title="解决过程与分析"></a>解决过程与分析</h3><ol>
+<li>编写信号量方法<br>信号量方法里主要目的是编写P操作方法和V操作方法。用synchronized修饰同步方法，保证A线程执行该方法的时候，其他线程只能在方法外等着。在P操作方法中，利用wait()方法，使得当缓冲区已满/空时，生产者或消费者线程停止自己的执行，释放锁，使自己处于等待状态，让其它线程执行。在V操作方法中，利用notify()方法，当生产者或消费者向缓冲区放入或取出一个产品时，向其他等待的线程发出通知，同时释放锁，使自己处于等待状态，让其它线程执行。<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">class Semaphore</span><br><span class="line">&#123;</span><br><span class="line">    public int value;</span><br><span class="line">    public Semaphore(int value)</span><br><span class="line">    &#123;</span><br><span class="line">        super();</span><br><span class="line">        this.value=value;</span><br><span class="line">    &#125;</span><br><span class="line">    //P操作</span><br><span class="line">    public synchronized final void P()&#123;</span><br><span class="line">        value--;</span><br><span class="line">        if(value&lt;0)</span><br><span class="line">        &#123;</span><br><span class="line">            try</span><br><span class="line">            &#123;</span><br><span class="line">                this.wait();</span><br><span class="line">            &#125;catch(InterruptedException e)</span><br><span class="line">            &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    //V操作</span><br><span class="line">    public synchronized final void V()</span><br><span class="line">    &#123;</span><br><span class="line">        value++;</span><br><span class="line">        if(value&lt;=0)</span><br><span class="line">        &#123;</span><br><span class="line">            this.notify();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></li>
+<li>编写生产者方法<br>利用Runnable接口创建新进程，Runnable接口可以被任何想要被一个线程运行的接口继承实现。利用empty()方法获取空缓冲区单元，接着用mutex.P()进入临界区，用mutex.V()离开临界区并释放信号量，离开时满缓冲区数要加1。<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">class Producer implements Runnable</span><br><span class="line">&#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void run()</span><br><span class="line">    &#123;</span><br><span class="line">        Global.timingwait();</span><br><span class="line">        System.out.println(Thread.currentThread().getName() + &quot;  生产出一个商品&quot;);</span><br><span class="line">        Global.empty.P();//获取空缓冲区单元</span><br><span class="line">        Global.mutex.P();//进入临界区</span><br><span class="line">        Global.timingwait();</span><br><span class="line">        System.out.println(Thread.currentThread().getName() + &quot;  将产品放入缓冲区--缓冲区剩余 &quot; + (++Global.count) + &quot; 个产品&quot;);</span><br><span class="line">        Global.mutex.V();//离开临界区，释放信号量</span><br><span class="line">        Global.full.V();//满缓冲区数加一</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></li>
+<li>编写消费者方法<br>利用full.P()方法获取满缓冲区单元，然后利用mutex.P()进入临界区，从缓冲区中取出产品后，利用mutex.V()离开临界区，释放互斥信号量，并利用empty.V()将空缓冲区加1。<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">class Consumer implements Runnable</span><br><span class="line">&#123;</span><br><span class="line">    @Override</span><br><span class="line">    public void run()</span><br><span class="line">    &#123;</span><br><span class="line">        Global.timingwait();</span><br><span class="line">        Global.full.P();//获取满缓冲区单元</span><br><span class="line">        Global.mutex.P();//进入临界区</span><br><span class="line">        Global.timingwait();</span><br><span class="line">        System.out.println(Thread.currentThread().getName() + &quot;  从缓冲区取出一个产品--缓冲区剩余 &quot;+ (--Global.count) + &quot; 个产品&quot;);</span><br><span class="line">        Global.mutex.V();//离开临界区，释放互斥信号量</span><br><span class="line">        Global.empty.V();//空缓冲区加一</span><br><span class="line">        System.out.println(Thread.currentThread().getName() + &quot;  消费一个商品&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></li>
+</ol>
+<h3 id="调试问题及解决方案"><a href="#调试问题及解决方案" class="headerlink" title="调试问题及解决方案"></a>调试问题及解决方案</h3><p>需要注意对缓冲区大小为n的处理，当缓冲区中有空时，便可对empty变量执行P操作，一旦取走一个资源便可执行V操作以释放空闲区。对empty和full变量的P操作必须放在mutex的P操作之前。</p>
+<h3 id="创新部分及思考"><a href="#创新部分及思考" class="headerlink" title="创新部分及思考"></a>创新部分及思考</h3><p>为了更加直观地表示出运行结果，我们在生产者将商品放入缓冲区，以及消费者从缓冲区内拿到商品后，利用Global(count)显示出缓冲区剩余的商品数，这样能更加清晰地显示出生产者和消费者在进行操作后缓冲区的变化。</p>
+<h2 id="处理机调度"><a href="#处理机调度" class="headerlink" title="处理机调度"></a>处理机调度</h2><h3 id="问题分析-1"><a href="#问题分析-1" class="headerlink" title="问题分析"></a>问题分析</h3><p>按优先权调度算法实现处理器调度的程序：<br>假定系统有五个进程，每一个进程用一个进程控制块 PCB 来代表。在每次运行你所设计的处理器调度程序之前，为每个进程任意确定它的“优先数” 和“要求运行时间”。为了调度方便，把五个进程按给定的优先数从大到小连成队列。用一单元指出队首进程，用指针指出队列的连接情况。处理器调度总是选队首进程运行。采用动态改变优先数的办法，进程每运行一次优先数就减“1”。</p>
+<p>按时间片轮转法实现处理器调度的程序：<br>有两种状态，“就绪”和“结束”，初始状态都为“就绪”，用“R”表示。 当一个进程运行结束后，它的状态为“结束”，用“E”表示。每次运行所设计的处理器调度程序前，为每个进程任意确定它的“要求运行时间”。把五个进程按顺序排成循环队列，用指针指出队列连接情况。另用一标志单元记录轮到运行的进程。</p>
+<h3 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h3><p>需要将逻辑地址转换为对应的页号以及页内位移，构造数组table进行逻辑地址的记录。<br>可假设有三种状态，“就绪”状态（ready）、“运行”状态（working）和 “结束”状态（finish）。五个进程的初始状态都为“就绪”，用“R”表示；当进程运行结束后，它的状态为“结束”，用“E”表示；当进程被选中开始运行但尚未结束时，它的状态为“运行”，用“W”表示。 </p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">public class Priority &#123;</span><br><span class="line">    public static void getMax(Queue&lt;PCB&gt; queue) &#123;</span><br><span class="line">        //找出优先级最高（优先级数最小）的进程</span><br><span class="line">        int minPriorityNum = 100;</span><br><span class="line">        int minArrivalTime = 100;</span><br><span class="line">        for(PCB q : queue ) &#123;</span><br><span class="line">            if(q.getPriorityNum() &lt; minPriorityNum) &#123;</span><br><span class="line">                minPriorityNum = q.getPriorityNum();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        //找出优先级最高且到达时间最早的进程</span><br><span class="line">        for(PCB q : queue ) &#123;</span><br><span class="line">            if(q.getPriorityNum() == minPriorityNum &amp;&amp; q.getArrivalTime() &lt; minArrivalTime) &#123;</span><br><span class="line">                minArrivalTime = q.getArrivalTime();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        PCB first = queue.peek();</span><br><span class="line">        for(int i = 0;i &lt; queue.size();i++) &#123;</span><br><span class="line">            while(queue.peek().getPriorityNum() &gt; minPriorityNum) &#123;</span><br><span class="line">                queue.offer(queue.peek());</span><br><span class="line">                queue.poll();</span><br><span class="line">            &#125;</span><br><span class="line">            PCB q =  ((LinkedList&lt;PCB&gt;) queue).get(i);</span><br><span class="line"></span><br><span class="line">            if(!q.equals(first)) &#123;</span><br><span class="line">                if((q.getPriorityNum() == queue.peek().getPriorityNum()) &amp;&amp; q.getArrivalTime() &lt; queue.peek().getArrivalTime()) &#123;</span><br><span class="line">                    while(queue.peek().getArrivalTime() != minArrivalTime) &#123;</span><br><span class="line">                        queue.offer(queue.peek());</span><br><span class="line">                        queue.remove(queue.peek());</span><br><span class="line">                        queue.remove(0);</span><br><span class="line">                        //i--;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;else &#123;</span><br><span class="line">                    continue;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;else &#123;</span><br><span class="line">                continue;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></div>
+<p>每次运行所设计的处理器调度程序前，为每个进程任意确定它的“要求运行时间”。 在实际的系统中，当一个进程被选中运行时，必须置上该进程可以运行的 时间片值，以及恢复进程的现场，让它占有处理器运行，直到出现等待事件或运行满一个时间片。在这时省去了这些工作，仅用“已运行时间+1”来表示进程已经运行满一个时间片。程运行一次后，应把该进程的进程控制块中的指针值送到标志单元，以指示下 一个轮到运行的进程。同时，应判断该进程的要求运行时间与已运行时间，若该进程的要求 运行时间¹已运行时间，则表示它尚未执行结束，应待到下一轮时再运行。若该进程的要求 运行时间=已运行时间，则表示它已经执行结束，应指导它的状态修改成“结束”（E）且退出队列。此时，应把该进程的进程控制块中的指针值送到前面一个进程的指针位置。 </p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">public void RRAlgorithm() &#123;</span><br><span class="line">        mReadyQueue.add(mUnreachQueue.poll());</span><br><span class="line">        Process currProcess = mReadyQueue.poll();</span><br><span class="line">        //第一个进程执行</span><br><span class="line">        int currTime = executeProcess(currProcess, 0);</span><br><span class="line"></span><br><span class="line">        while(!mReadyQueue.isEmpty() || !mUnreachQueue.isEmpty()) &#123;</span><br><span class="line">            //把所有“到达时间”达到的进程加入运行队列头部</span><br><span class="line">            while(!mUnreachQueue.isEmpty()) &#123;</span><br><span class="line">                if(mUnreachQueue.peek().getArrivalTime() &lt;= currTime) &#123;</span><br><span class="line">                    mReadyQueue.add(mUnreachQueue.poll());</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            if(currProcess.getRemainServiceTime() &gt; 0) mReadyQueue.add(currProcess);</span><br><span class="line">            //运行队列不为空时</span><br><span class="line">            if(!mReadyQueue.isEmpty()) &#123;</span><br><span class="line">                currProcess = mReadyQueue.poll();</span><br><span class="line">                currTime = executeProcess(currProcess, currTime);</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                //当前没有进程执行，但还有进程为到达，时间直接跳转到到达时间</span><br><span class="line">                currTime = mUnreachQueue.peek().getArrivalTime();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></div>
+<h3 id="实验结果总结"><a href="#实验结果总结" class="headerlink" title="实验结果总结"></a>实验结果总结</h3><p>优先权调度算法：优先级可以是静态赋予：创建任务的时候，就指定优先级大小，并且保持不变，直到任务结束。也可以是动态赋予：优先级在执行任务中动态改变。为了防止高优先级进程无休止地运行下去，调度程序可以在每个时钟中断降低当前进程的优先级。</p>
+<p>时间片轮转法的性能很大程度上依赖于时间片的大小。如果时间片足够大，那么它就退化为先来先服务调度算法；若时间片很小，则处理机将在进程间过于频繁地切换，使处理机开销过大。</p>
+<p>在平时中，我们可以把不同的任务划分为不同的优先级，然后在相同优先级的任务中使用时间片轮转。</p>
+<h2 id="存储管理"><a href="#存储管理" class="headerlink" title="存储管理"></a>存储管理</h2><h3 id="问题分析-2"><a href="#问题分析-2" class="headerlink" title="问题分析"></a>问题分析</h3><p>分页式虚拟存储系统是把作业信息的副本存放在磁盘上，当作业被选中时，可把 作业的开始几页先装入主存且启动执行。为此，在为作业建立页表时，应说明哪些页已在主存，哪些页尚未装入主存。作业执行时，指令中的逻辑地址指出了参加运算的操作数存放的页号和单元号， 硬件的地址转换机构按页号查页表，若该页对应标志为“1”，则表示该页已在主存，这时根据关系式计算出出欲访问的主存单元地址。设计一个“地址转换”程序来模拟硬件的地址转换工作。当访问的页在主存时，则形成绝对地址，但不去模拟指令的执行，而用输出转换后的地址来代替一条指令的执行。</p>
+<p>每访问一个地址时，首先要计算该地址所在的页的页号，然后查页表，判断该页是否在主存——如果该页已在主存，则打印页表情况；同时输出绝对地址。如果该页不在主存且页表已满，则按淘汰算法淘汰一页后调入所需的页（只将该页在页表中标志位进行修改），打印页表情况，逐个地址访问，直到所有地址访问完毕。</p>
+<h3 id="解决过程-1"><a href="#解决过程-1" class="headerlink" title="解决过程"></a>解决过程</h3><p>将逻辑地址转换为对应的页号以及页内位移，构造数组table进行逻辑地址的记录。 </p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">    Yetable[] table = new Yetable[7];</span><br><span class="line">    table[0]=new Yetable(0,1,5,0,&quot;011&quot;);</span><br><span class="line">    table[1]=new Yetable(1,1,8,0,&quot;012&quot;);</span><br><span class="line">    table[2]=new Yetable(2,1,9,0,&quot;013&quot;);</span><br><span class="line">    table[3]=new Yetable(3,1,1,0,&quot;021&quot;);</span><br><span class="line">    table[4]=new Yetable(4,0,0,&quot;022&quot;);</span><br><span class="line">    table[5]=new Yetable(5,0,0,&quot;023&quot;);</span><br><span class="line">    table[6]=new Yetable(6,0,0,&quot;121&quot;);</span><br><span class="line">    int[] tihuan = new int[]&#123;0,1,2,3&#125;;</span><br><span class="line">    int yeno;</span><br><span class="line">    Scanner scan = new Scanner(System.in);</span><br><span class="line">    int dizhi;</span><br><span class="line">    int jueduidizhi;</span><br><span class="line">    int flag=0;</span><br><span class="line">    int a=0;</span><br><span class="line">    System.out.println(&quot;页号  &quot;+&quot;标志  &quot;+&quot;主存块号&quot;+&quot;修改标志&quot;+&quot;磁盘位置&quot;);</span><br><span class="line">    for(int j=0;j&lt;table.length;j++)&#123;</span><br><span class="line">        System.out.println(table[j].yeno+&quot;    &quot;+table[j].logo+&quot;    &quot;+table[j].kuaino+&quot;      &quot;+table[j].xiugai+&quot;      &quot;+table[j].home);</span><br><span class="line">    &#125;</span><br><span class="line">    while(true)&#123;</span><br><span class="line">        System.out.println(&quot;请输入要访问的页号:&quot;);</span><br><span class="line">        yeno = scan.nextInt();</span><br><span class="line">        System.out.println(&quot;请输入页号的页内地址:&quot;);</span><br><span class="line">        dizhi =scan.nextInt();</span><br><span class="line">        for(int i=0;i&lt;table.length;i++)&#123;</span><br><span class="line">            if(yeno==table[i].yeno)&#123;</span><br><span class="line">                a++;</span><br><span class="line">                if(table[i].logo==1)&#123;</span><br><span class="line">                    System.out.println(&quot;页号  &quot;+&quot;标志  &quot;+&quot;主存块号&quot;+&quot;修改标志&quot;+&quot;磁盘位置&quot;);</span><br><span class="line">                    for(int j=0;j&lt;table.length;j++)&#123;</span><br><span class="line">                        System.out.println(table[j].yeno+&quot;    &quot;+table[j].logo+&quot;    &quot;+table[j].kuaino+&quot;      &quot;+table[j].xiugai+&quot;      &quot;+table[j].home);</span><br><span class="line">                    &#125;</span><br><span class="line">                    jueduidizhi=table[i].kuaino*1024+dizhi;</span><br><span class="line">                    System.out.println(&quot;绝对地址:&quot;+jueduidizhi);</span><br><span class="line">                    break;</span><br><span class="line">                &#125;else&#123;</span><br><span class="line">                    if(flag==4)&#123;</span><br><span class="line">                        flag=1;</span><br><span class="line">                    &#125;</span><br><span class="line">                    table[i].logo=1;</span><br><span class="line">                    int m=tihuan[flag];</span><br><span class="line">                    table[m].logo=0;</span><br><span class="line">                    table[i].kuaino=table[m].kuaino;</span><br><span class="line">                    table[m].kuaino=0;</span><br><span class="line">                    tihuan[flag]=table[i].yeno;</span><br><span class="line">                    flag++;</span><br><span class="line">                    System.out.println(&quot;页号  &quot;+&quot;标志  &quot;+&quot;主存块号&quot;+&quot;修改标志&quot;+&quot;磁盘位置&quot;);</span><br><span class="line">                    for(int j=0;j&lt;table.length;j++)&#123;</span><br><span class="line">                        System.out.println(table[j].yeno+&quot;    &quot;+table[j].logo+&quot;    &quot;+table[j].kuaino+&quot;      &quot;+table[j].xiugai+&quot;      &quot;+table[j].home);</span><br><span class="line">                    &#125;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        if(a==0)&#123;</span><br><span class="line">            System.out.println(&quot;无此页号!&quot;);</span><br><span class="line">            continue;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="调度算法思考"><a href="#调度算法思考" class="headerlink" title="调度算法思考"></a>调度算法思考</h2><p>先进先出页面调度算法即FIFO。优先淘汰最早进入内存的页面，即在内存中驻留时间最久的页面。类似于数据结构中的队列。在实现上，把调入内存的页面根据先后次序链接成队列，设置一个指针总是指向页面队列的第一个页面，若还有空闲页，直接入队，没有空闲页，每次把指针指向的第一个页面置换掉即可。</p>
+<p>最近最少使用即LRU页面调度算法，是当有空闲页面时直接调入，没有空闲页面时，选择最近最长时间没有访问过的页面进行淘汰并将新页面调入，认为过去一段时间内未访问过的页面在之后的一段时间也不太可能会被访问。通常需要设置一个标记位来记录页面未被访问的次数，页满时选择标记位最大的一个页面淘汰。</p>
+<p>先进先出页面调度算法性能不好，但实现简单，基于队列实现的，与进程运行的状态不协调，因为进程会经常访问某些页面，并且先进先出可能会出现belady现象，即可分配的物理块数增多但缺页次数可能不减反增。<br>最近最少未使用算法开销大，性能好，需要硬件支持，属于堆栈类算法，与程序运行规律比较一致，通常比先进先出更常用。</p>
+<p>每个文件都有其对应的文件控制快（FCB）包含了对文件进行控制的名称、标识符、类型、位置、大小等属性，通过操作系统提供的文件管理系统可以对文件进行创建、删除、读、写等操作。文件都是存放在目录下的，常用的操作系统会使用树形的目录结构来实现多级目录和按名存取。</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>赴冀鲁豫纪念馆社会实践有感</title>
+    <url>/2021/02/26/social-practice-research/</url>
+    <content><![CDATA[<h3 id="纪念实践"><a href="#纪念实践" class="headerlink" title="纪念实践"></a>纪念实践</h3><p>我于寒假中参加了此次社会实践，开展了“挖掘红色故事 追溯红色记忆”的主题活动。努力用心灵去体味菏泽人争取民族解放的血性，用脚步去丈量广大军民浴血奋战的足迹，用眼睛去发现菏泽科学发展的谋略，用手指去触摸菏泽跨越赶超的活力，用耳朵去倾听孩子们幸福的笑声。</p>
+<p>冀鲁豫边区革命纪念馆于1998年4月在山东省菏泽市奠基，2000年5月建成开馆，集展厅、画馆、广场建设于一体。主体建筑由展厅和全景画馆组成。展厅分为序厅和星星之火、浴血抗日、逐鹿中原、革命儿女四个大厅，全面而又系统地反映了三、四十年代冀鲁豫边区党政军民，在中国共产党的领导下，不怕牺牲、前赴后继、不屈不挠、英勇奋进的革命精神。绘画、地面塑形和灯光音响相互交融，堪称国内一流。2020年6月5日，被评为山东省退役军人思想政治教育基地。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/social-practice-research/revolutionary_memorial_museum.png"
+                      alt="冀鲁豫边区革命纪念馆" title="冀鲁豫边区革命纪念馆"
+                ></p>
+<p>红色基因激励人们写就壮丽篇章。一把把锈迹斑斑的大刀、一张张隐藏历史基因的照片、一段段发人深省的视频，深深吸引了我的注意。面塑作品 《把娃儿捂死吧》，讲述的是一个令人不堪回首的故事。</p>
+<p>1939年5月11日，日军集结5000余人，兵分九路包围八路军115师和鲁西区委机关。陈光代市长命令部队迅速突围，危急时刻，有6个八路军战士跑到三区妇救会长刘克林家里说：“日军围了村子，赶快转移。”说完就往外跑。这时候炮弹已经打过来，妇救会长刘克林不容分说，领着6个战士和家人往外走，躲避到一个山洞里。她让战士躲进里面，自己和婆婆守在洞口，可是她九个月大的儿子突然大哭起来，怎么哄也哄不住。全家人被捕不要紧，可是6个战士就掩护不住了。她毅然对婆婆说：“娘，把娃儿捂死吧！”婆婆流着泪没有说话。刘克林用手把孩子的嘴捂住……直到敌人离去。</p>
+<p>红三村、秦兴体……冀鲁豫边区革命纪念馆类似的英雄群体和个人还有很多很多。红色基因，是信仰的种子、制胜的密码、精神的归宿，激励着这里的人们在不同的时代写就着精彩壮丽的篇章。</p>
+<p>炮火隆隆、硝烟纷飞、杀声震天……我在冀鲁豫边区革命纪念馆参观采访时，观看了郓城攻坚战全景画馆。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/social-practice-research/exhibition_of_revolutionary_history.png"
+                      alt="革命史陈列" title="革命史陈列"
+                ></p>
+<p>坐在旋转平台的椅子上，只见眼前火光冲天，枪声、炮声、飞机轰鸣声、攻城厮杀声交织在一起，场景不断交替，真实再现了当年郓城攻坚战的壮观场景，让人倍感胜利来之不易。1947年夏，刘邓大军飞越黄河天险，千里挺进大别山，拉开了由战略防御转为战略进攻的序幕。1947年7月刘邓大军连续作战，连战连捷，先后解放郓城、曹县、定陶等县城，歼敌数万人。</p>
+<p>一只陈旧的枣红色文件柜、一把油迹斑斑的罗圈椅，无不诉说着那段金戈铁马的战斗岁月。巨野县田庄镇丁官屯村一处普通的农家小院，是解放战争时期刘伯承、邓小平指挥鲁西南战役的指挥部旧址，目前刘邓首长住室和使用过的部分物品仍在此保存。</p>
+<p>70年前，刘伯承、邓小平曾怀抱这处农家小院主人韩存政的女儿在这里休息嬉戏；70年后，这里已经辟为鲁西南战役的指挥部旧址。</p>
+<p>70年前，刘邓大军与巨野人民携手作战、不怕牺牲、顽强拼搏，为全中国的解放事业作出了彪炳史册的历史贡献；70年后，百万巨野人民不忘革命精神，攻坚克难、锐意进取，积极投身经济社会建设中，努力建设繁荣富强、宜居宜业的美丽新巨野。</p>
+<p>在巨野文庙，巍峨的大成殿和丰富的汉代文物让人不禁感叹巨野的悠久历史；在巨野县书画院，精彩的书画作品和麒麟雕塑彰显着巨野的文化底蕴；在巨野新巨龙能源有限公司，世界一流的千万吨矿井展示巨野的富饶；在花冠集团，点滴尽杰作的承诺展现了巨野人永无止境的进取精神。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/social-practice-research/the_first_flag.png"
+                      alt="第一个国旗" title="第一个国旗"
+                ></p>
+<p>“这面狱中红旗源于罗广斌听到的一个消息。”红岩魂陈列馆内，王浩指着橱窗内展示的狱中红旗说。</p>
+<p>1949年10月7日，虽然中华人民共和国已经成立7天，但由于国民党反动派封锁信息，被囚禁在白公馆看守所的罗广斌等人并未得知这一消息。</p>
+<p>那天下午，罗广斌刚刚走出牢房，准备去放风，同狱的原东北军爱国将领黄显声叫住了他。</p>
+<p>黄显声小声地对他说：“中华人民共和国已经于7天前在北京成立了，中华人民共和国的国旗是五星红旗，国歌是风靡抗战时期的《义勇军进行曲》……”放风结束后，罗广斌赶紧回到牢房，把这一喜讯分享给每一位同志。</p>
+<p>“罗广斌带来的这一消息，让整个牢房沸腾了。”王浩说。据史料记载，与罗广斌同在一间牢房的王朴、陈然等难友听到这一喜讯，兴奋得几乎跳起来。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/social-practice-research/red_rock.png"
+                      alt="红岩" title="红岩"
+                ></p>
+<p>重庆解放后，罗广斌与杨益言在创作小说《红岩》时，把制作狱中红旗这一情节进行了艺术地再现。</p>
+<p>随着红岩精神的传承与发扬，这面红旗背后的故事也成为广大文艺工作者进行创作的重要题材。除了小说《红岩》外，革命志士绣红旗的场景还出现在电影《烈火中永生》等文艺作品中，特别是在重庆市川剧院编排的新版川剧《江姐》里，以黄色绸带舞再现绣红旗的情景更是让不少观众印象深刻。</p>
+<p>通过这次去纪念馆参观，我缅怀了革命先烈的英雄事迹，深深体会到了中国革命的胜利来之不易。在以后学习生活中，我一定要更加珍惜美好的幸福生活，一定要以先辈们为榜样，勇挑重担，攻坚克难。 </p>
+<h3 id="实践成果"><a href="#实践成果" class="headerlink" title="实践成果"></a>实践成果</h3><p>获得 “东北大学社会实践优秀个人” 奖项。</p>
 ]]></content>
   </entry>
 </search>

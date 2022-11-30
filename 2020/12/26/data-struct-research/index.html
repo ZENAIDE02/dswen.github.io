@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    <meta name="description" content="dswen">
+    <meta name="author" content="dongshiwen">
+    
+    <title>
+        
+            数据结构实验 |
+        
+        dswen&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/logo.svg">
+    
+<link rel="stylesheet" href="/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/css/v5-font-face.min.css">
+
+    
+<link rel="stylesheet" href="/css/duotone.min.css">
+
+    
+<link rel="stylesheet" href="/css/brands.min.css">
+
+    
+<link rel="stylesheet" href="/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/css/brands.min.css">
+
+    
+<link rel="stylesheet" href="/css/css2.css">
+
+    <link rel="stylesheet" href="//evan.beee.top/css/waline.css"/>
+    <script src="//evan.beee.top/js/waline.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script id="hexo-configurations">
+    let REDEFINE = window.REDEFINE || {};
+    REDEFINE.hexo_config = {"hostname":"dongshiwen02.github.io","root":"/","language":"zh-CN","path":"search.xml"};
+    REDEFINE.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#005080","avatar":"/images/avatar.svg","favicon":"/images/logo.svg","article_img_align":"center","left_side_width":"240px","content_max_width":"960px","nav_color":{"left":"#f78736","right":"#367df7","transparency":35},"hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_image":{"light":"/images/wallhaven-bg-light.webp","dark":"/images/wallhaven-bg-dark.webp"},"title_color":{"light":"#fff","dark":"#323739"},"description":"真诚热烈 向阳而生"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"0.3.3"};
+    REDEFINE.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+    
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                dswen&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/msg-board"
+                            >
+                                MSG BOARD
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/msg-board">MSG BOARD</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation"><h1 style="font-size:2rem; font-weight: bold; margin: 10px 0;">数据结构实验</h1></span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/avatar.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">dongshiwen</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-duotone fa-pen-line"></i>&nbsp;
+        <span class="pc">2020-12-26 13:15:31</span>
+        <span class="mobile">2020-12-26 13:15</span>
+    </span>
+    
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h3 id="线性表的应用"><a href="#线性表的应用" class="headerlink" title="线性表的应用"></a>线性表的应用</h3><h4 id="实验内容"><a href="#实验内容" class="headerlink" title="实验内容"></a>实验内容</h4><p>进行集合运算，用线性表存储集合数据，并完成集合运算，至少包括集合的交集、并集、补集、差集。</p>
+<h4 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h4><p>首先分配内存空间，对线性表进行初始化，然后在线性表中插入元素e    。创建单链表的各节点，建立单链表。判断两元素是否相等，若相等则返回TRUE，否则返回FAISE。在顺序线性表L中查找第1个值与e满足compare()的元素的位。接着打印顺序表函数。编写函数实现两个集合的并运算，把数组A中各个元素先保存在数组C中。将数组B中的元素逐一与数组A中的元素进行比较，把不相同的元素添加到数组C中，数组C便是集合A和集合B的并集，编写函数实现两个集合的交运算，把数组A中元素逐一与数组B中的元素进行比较，将相同的元素放在数组C中，数组C便是集合A和集合B的交集。编写函数实现两个集合的差运算，将数组A中的元素逐一与数组B中的元素进行比较，把数组A与数组B不同的元素保存在数组C中，数组C便是集合A和集合B的差集。编写函数实现两个集合的补集运算。将数组E中的元素逐一与数组A中的元素进行比较，把不相同的元素保存到数组C中，数组C便是集合A关于集合E的补集。编写函数实现输入集合，选择操作等，最后进行实验结果的测试。</p>
+<p>编写函数实现两个集合的并运算。把数组A中各个元素先保存在数组C中。将数组B中的元素逐一与数组A中的元素进行比较，把不相同的元素添加到数组C中，数组C便是集合A和集合B的并集。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">void union(SqList La,SqList Lb,SqList &amp;Lc)&#123;</span><br><span class="line">	int i;</span><br><span class="line">	ElemType elem;</span><br><span class="line">	Lc.length=0;</span><br><span class="line">	for(i = 0; i &lt; La.length; i++)</span><br><span class="line">	Lc.elem[Lc.length++]=La.elem[i];</span><br><span class="line">	for(i = 1; i &lt;= Lb.length; i++)&#123;</span><br><span class="line">		elem = Lb.elem[i-1];</span><br><span class="line">		if(!LocateElem_Sq(La,elem,Equal))</span><br><span class="line">		ListInsert_Sq(Lc,Lc.length+1,elem);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<p>编写函数实现两个集合的交运算。把数组A中元素逐一与数组B中的元素进行比较，将相同的元素放在数组C中，数组C便是集合A和集合B的交集。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">void same(SqList La,SqList Lb,SqList &amp;Lc)&#123;</span><br><span class="line">	int i;</span><br><span class="line">	ElemType elem;</span><br><span class="line">	Lc.length = 0;</span><br><span class="line">	for(i = 1; i &lt;= La.length; i++)&#123;</span><br><span class="line">		elem = La.elem[i-1];</span><br><span class="line">		if(LocateElem_Sq(Lb,elem,Equal))</span><br><span class="line">		ListInsert_Sq(Lc,Lc.length+1,elem);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+<h3 id="栈和队列的应用"><a href="#栈和队列的应用" class="headerlink" title="栈和队列的应用"></a>栈和队列的应用</h3><h4 id="实验内容-1"><a href="#实验内容-1" class="headerlink" title="实验内容"></a>实验内容</h4><p>实现栈和队列的基本操作，并进行算术表达式求值：利用栈实现一个中缀表达式的求值。</p>
+<h4 id="实验步骤-1"><a href="#实验步骤-1" class="headerlink" title="实验步骤"></a>实验步骤</h4><p>首先初始化操作数栈，并进行操作数的进栈出栈，得到操作数栈的栈顶元素并打印，接着打印操作符中元素。初始化操作符栈，并进行操作符的进栈出栈，得到操作符栈顶元素。然后编写函数求表达式的长度，并判断操作符栈是否为空，接着判断符号优先级。编写函数实现四则运算并判断表达式是否符合四则运算。编写函数，输入表达式，并对相应的表达式进行计算，从而实现中缀表达式的求值。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line">double calculate()&#123;</span><br><span class="line">    double a, result=0,x, y, b;</span><br><span class="line">    int i=0，j=0,k=0; //i，i为循环变最</span><br><span class="line">    char ch,s[100] ;</span><br><span class="line">    Node p1;//操作符栈</span><br><span class="line">    Stack p2;//操作数栈</span><br><span class="line">    InitStack (&amp;p2);</span><br><span class="line">    InitNode(&amp;p1);</span><br><span class="line">    printf(&quot;输入表计式(输入’#’代麦结束)\n&quot;) ;</span><br><span class="line">    gets(s) ;</span><br><span class="line">    while(s[i]!=&#x27;\0’&amp;&amp;i&lt;Length(s))&#123;</span><br><span class="line">        k=0;</span><br><span class="line">        b=0;</span><br><span class="line">        a=0;</span><br><span class="line">        j=i;</span><br><span class="line">        if(s[j&gt;=’O’&amp;&amp;s[j]&lt;=&#x27;9&#x27;)&#123;</span><br><span class="line">            while(s[j]&gt;=&#x27;0&#x27;&amp;&amp;s[j]&lt;=&#x27;9&#x27;)&#123;</span><br><span class="line">                a=(double)((s[j]-&#x27;0’)+a*10);</span><br><span class="line">                j++;</span><br><span class="line">            &#125;</span><br><span class="line">            if(s[j]==’.&#x27;)&#123;</span><br><span class="line">                j++;</span><br><span class="line">                if(s[j]&gt;=&#x27;0’&amp;&amp;s[j]&lt;=&#x27;9&#x27;)&#123;</span><br><span class="line">                   while(s[j]&gt;=’O&#x27;&amp;&amp;s[j]&lt;=&#x27;9&#x27;)&#123;</span><br><span class="line">                        b=(double)((s[j]-&#x27;0’)+b*10) ;</span><br><span class="line">                        k++;</span><br><span class="line">                        j++；</span><br><span class="line">                   &#125;</span><br><span class="line">                   for(i=0;i&lt;k;i++)&#123;</span><br><span class="line">                        b=b/(10.0);</span><br><span class="line">                        a=a+b;</span><br><span class="line">                   &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                i=--j;</span><br><span class="line">                PushStack (&amp;p2, a);</span><br><span class="line">        &#125;</span><br><span class="line">        else if(Isop(s[i])==1)&#123;</span><br><span class="line">            if(empty (&amp;p1))&#123;</span><br><span class="line">                PushNode (&amp;p1,sli]）;</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;</span><br><span class="line">                while( ! empty(&amp;p1))&#123;</span><br><span class="line">                    ch=getTopNode(&amp;p1);</span><br><span class="line">                    if(compare(ch)&gt;=compare(s[i]))&#123;</span><br><span class="line">                        x=PopStack(&amp;p2);</span><br><span class="line">                        y=PopStack(&amp;p2);</span><br><span class="line">                        result=add(y,ch, x) ;</span><br><span class="line">                        PopNode (&amp;p1);</span><br><span class="line">                        PushStack (&amp;p2,result) ;</span><br><span class="line">                    &#125;</span><br><span class="line">                    else break;</span><br><span class="line">                &#125;</span><br><span class="line">                if(s[i]!=’#’)</span><br><span class="line">                    PushNode(&amp;p1,s[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        else if(Isop(s[i])==2)&#123;</span><br><span class="line">            if(s[i]==&#x27;()&#123;</span><br><span class="line">               PushNode(&amp;p1,s[i]);</span><br><span class="line">            else&#123;</span><br><span class="line">                while(getTopNode(&amp;p1)!=’(’)&#123;</span><br><span class="line">                      ch=getTopNode(&amp;p1) ;</span><br><span class="line">                      x=PopStack(&amp;p2) ;</span><br><span class="line">                      y=PopStack (&amp;p2);</span><br><span class="line">                      result=add(y, ch,x);</span><br><span class="line">                      PopNode(&amp;p1) ;</span><br><span class="line">                      PushStack (&amp;p2,result);</span><br><span class="line">                      &#125;</span><br><span class="line">                      PopNode(&amp;p1);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        i++;</span><br><span class="line">&#125;</span><br><span class="line">    while(! empty(&amp;p1))&#123;</span><br><span class="line">        ch=getTopNode(&amp;p1) ;</span><br><span class="line">        x=PopStack (&amp;p2);</span><br><span class="line">        y=PopStack (&amp;p2);</span><br><span class="line">        result=add(y,ch,x) ;</span><br><span class="line">        PopNode(&amp;p1);</span><br><span class="line">        PushStack(&amp;p2, result) ;</span><br><span class="line">    &#125;</span><br><span class="line">    return getTopStack(&amp;p2);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="二叉树的应用"><a href="#二叉树的应用" class="headerlink" title="二叉树的应用"></a>二叉树的应用</h3><h4 id="实验内容-2"><a href="#实验内容-2" class="headerlink" title="实验内容"></a>实验内容</h4><p>使用树结构存储医院楼房结构，通过读取文件definition.txt文件创建树形结构，将树形结构创建后，可以读取queries.txt中的查询完成对应的操作。查询有几个子部件并且按照一定顺序打印出来。</p>
+<h4 id="实验步骤-2"><a href="#实验步骤-2" class="headerlink" title="实验步骤"></a>实验步骤</h4><p>使用结构体分别定义节点与树结构，用数组储存所有节点，始化节点和树结构后，可以进行创建树的操作。创建树结构后，使用递归的方法实现查找父节点和查找孩子节点的函数。根据文件读入的信息以及查找函数的遍历操作，对计算结果进行输出。<br>编写函数利用递归实现查找父节点:</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">void searchFatherNode(treeNode* node, char name[50], treeNode* &amp;mark)&#123;</span><br><span class="line">	if(node == NULL)&#123;</span><br><span class="line">		return;</span><br><span class="line">	&#125;</span><br><span class="line">	if(mark != NULL)&#123;</span><br><span class="line">		return;</span><br><span class="line">	&#125;</span><br><span class="line">	if(strcmp(name, node-&gt;name) == 0)&#123;</span><br><span class="line">		mark = node;</span><br><span class="line">		return;</span><br><span class="line">	&#125;</span><br><span class="line">	for(int i = 0; i &lt; 3; i++)&#123;</span><br><span class="line">		searchFatherNode(node-&gt;childNode[i], name, mark);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+<h3 id="图结构的应用"><a href="#图结构的应用" class="headerlink" title="图结构的应用"></a>图结构的应用</h3><h4 id="实验内容-3"><a href="#实验内容-3" class="headerlink" title="实验内容"></a>实验内容</h4><p>通过读取文件存储图中的数据，并完成图基本操作。输入起始城市和终点城市，可以给出两个城市的最小费用路线，并将路线给出。</p>
+<h4 id="实验步骤-3"><a href="#实验步骤-3" class="headerlink" title="实验步骤"></a>实验步骤</h4><p>使用三个结构体分别定义图的矩阵存储，权重以及最短路径。其中图结构中有顶点表，真实边数，真实顶点数，矩阵，权重结构体中存有距离和费用，最短路径中存有路径和费用。首先初始化邻接矩阵，存储地点的下表，对应行和列，来实现矩阵的赋值。初始化完成后，开始创建有向网。有向网创建成功后，输出结果进行打印。在求两个城市的最小费用路线时，利用迪杰斯特拉算法，得到的信息存储在最短路径结构体中，以便于后续对于最短路径的输出打印。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">typedef struct weight&#123;</span><br><span class="line">    int distance;//距离</span><br><span class="line">    int price;//费用</span><br><span class="line">&#125;Weight;//权值</span><br><span class="line"></span><br><span class="line">typedef struct graph&#123;</span><br><span class="line">    //VerTexType vexs[Max_Tex_Num];</span><br><span class="line">    char vexs[Max_Tex_Num][50];//顶点表（字符串类型数组)</span><br><span class="line">    int vexnum;//真实顶点数</span><br><span class="line">    int edgenum;//真实边数</span><br><span class="line">    Weight arcs[Max_Tex_Num][Max_Tex_Num];//矩阵/////</span><br><span class="line">&#125;AMGraph;//邻接矩阵</span><br><span class="line"></span><br><span class="line">struct shortestPath&#123;</span><br><span class="line">    int path;</span><br><span class="line">    int money;</span><br><span class="line">&#125;dij[Max_Tex_Num];</span><br></pre></td></tr></table></figure></div>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>本文标题：数据结构实验</li>
+        <li>本文作者：dongshiwen</li>
+        <li>创建时间：2020-12-26 13:15:31</li>
+        <li>
+            本文链接：https://dongshiwen02.github.io/2020/12/26/data-struct-research/
+        </li>
+        <li>
+            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2020/12/29/introduction-to-communication/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">通信概论之调幅及恒比码</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2020/11/28/computer-composition-principle-experiment/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">计算机组成原理实验</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
+    </div>
+    
+
+        
+            
+ 
+    <div id="waline"></div>
+    <script data-pjax>
+        Waline.init({
+            el: '#waline',
+            serverURL: 'https://waline-for-comment.vercel.app/',
+            lang: 'zh-CN',
+            dark: 'auto',
+            requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
+        });
+    </script>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">dongshiwen</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v0.3.3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fa-duotone fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-duotone fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div style="font-size: 1.3rem;margin-top: 0; margin-bottom: 0.8rem; transition-duration: 0.1s;"><i class="fa-solid fa-list-tree"></i> <strong>目录</strong></div>
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E8%A1%A8%E7%9A%84%E5%BA%94%E7%94%A8"><span class="nav-text">线性表的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9"><span class="nav-text">实验内容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E6%AD%A5%E9%AA%A4"><span class="nav-text">实验步骤</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97%E7%9A%84%E5%BA%94%E7%94%A8"><span class="nav-text">栈和队列的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9-1"><span class="nav-text">实验内容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E6%AD%A5%E9%AA%A4-1"><span class="nav-text">实验步骤</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%BA%94%E7%94%A8"><span class="nav-text">二叉树的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9-2"><span class="nav-text">实验内容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E6%AD%A5%E9%AA%A4-2"><span class="nav-text">实验步骤</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BE%E7%BB%93%E6%9E%84%E7%9A%84%E5%BA%94%E7%94%A8"><span class="nav-text">图结构的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E5%86%85%E5%AE%B9-3"><span class="nav-text">实验内容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9E%E9%AA%8C%E6%AD%A5%E9%AA%A4-3"><span class="nav-text">实验步骤</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            REDEFINE.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            REDEFINE.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            REDEFINE.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

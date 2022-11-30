@@ -9,7 +9,7 @@
     
     <title>
         
-            Hello World |
+            通信概论之调幅及恒比码 |
         
         dswen&#39;s Blog
     </title>
@@ -185,7 +185,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation"><h1 style="font-size:2rem; font-weight: bold; margin: 10px 0;">Hello World</h1></span>
+            <span class="title-hover-animation"><h1 style="font-size:2rem; font-weight: bold; margin: 10px 0;">通信概论之调幅及恒比码</h1></span>
         </div>
 
         
@@ -202,8 +202,8 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-duotone fa-pen-line"></i>&nbsp;
-        <span class="pc">2022-11-28 14:28:16</span>
-        <span class="mobile">2022-11-28 14:28</span>
+        <span class="pc">2020-12-29 16:34:08</span>
+        <span class="mobile">2020-12-29 16:34</span>
     </span>
     
     
@@ -220,19 +220,21 @@
         
 
         <div class="article-content markdown-body">
-            <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+            <h3 id="关于AM四种方法的探究与分析"><a href="#关于AM四种方法的探究与分析" class="headerlink" title="关于AM四种方法的探究与分析"></a>关于AM四种方法的探究与分析</h3><h4 id="关于调幅"><a href="#关于调幅" class="headerlink" title="关于调幅"></a>关于调幅</h4><p>调幅（Amplitude Modulation，AM），也就是通常说的中波，范围在530—1600KHz。调幅是用声音的高低变为幅度的变化的电信号。传输距离较远，但受天气因素影响较大，适合省际电台的广播。早期VHF频段的移动通信电台大都采用调幅方式，由于信道衰落会使模拟调幅产生附加调幅，造成失真，在传输的过程中也很容易被窃听，目前已很少采用。目前在简单通信设备中还有采用，如收音机中的AM波段就是调幅波，音质和FM波段调频波相比较差。</p>
+<h4 id="调幅的分类"><a href="#调幅的分类" class="headerlink" title="调幅的分类"></a>调幅的分类</h4><p>振幅调制可分为普通调幅（AM），双边带调幅（DSB-AM），单边带调幅（SSB-AM）与残留边带调幅（VSB-AM）几种不同方式。</p>
+<h4 id="调幅电路"><a href="#调幅电路" class="headerlink" title="调幅电路"></a>调幅电路</h4><p>调幅是使载波信号的幅度随着调制信号的幅度变化，载波的频率和相应不变。能够完成调幅功能的电路就叫调幅电路或调幅器。<br>调幅电路原理主要分为两类：高电平调幅电路和低电平调幅电路。</p>
+<p>高电平调幅要求电路的输出功率足够大。电路在调幅的同时，还进行功率放大。调制过程通常是在丙类放大级进行的。根据调制信号控制的电极不同，调制方法主要有集电极调幅、基极调幅、发射极调幅。</p>
+<h3 id="关于恒比码的思考与探索"><a href="#关于恒比码的思考与探索" class="headerlink" title="关于恒比码的思考与探索"></a>关于恒比码的思考与探索</h3><h4 id="恒比码的概念"><a href="#恒比码的概念" class="headerlink" title="恒比码的概念"></a>恒比码的概念</h4><p>在每个字符或功能信号中使用的各类码元均具有指定数目的检错码。在采用恒比码编码的体系中，所有有效的编码中为1的位都相同，所以被称为恒比。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/introduction-to-communication/constant_ratio_code.png"
+                      alt="恒比码" title="恒比码"
+                ></p>
+<h4 id="恒比码的种类"><a href="#恒比码的种类" class="headerlink" title="恒比码的种类"></a>恒比码的种类</h4><p>常用的恒比码有两种，一种是7中取3码，即一个代码的7个码元中恒定保持3个1，4个0的比例，另一种是8中取4。这两种恒比码检错的基本原理都是相同的。<br>采用7中取3码时，全部比特均编成具有7个码元的代码，但其中只有7!/3!/4!个代码字符是可用的。<br>7中取3码能检出全部单个错误，这是因为单个错误使代码中的1的个数为2或4个，成为非法码而被检出来。同理，对于奇数个错误可检出，但对偶个数错误却不能全部检出。<br>在国际上通用的ARQ电报通信系统采用了7中取3定比码。这种编码的不足之处是必须增加把字符编码转换为恒比码的设备。</p>
+<h4 id="恒比码的作用"><a href="#恒比码的作用" class="headerlink" title="恒比码的作用"></a>恒比码的作用</h4><p>能检测出全部奇数位错以及部分偶数位错，但码字中1变成0和0变成1成对出现的差错除外。简单，适用于用来传输电传机或其他键盘设备产生的字母和符号。因为每个汉字是以四位十进制数来代表的，所以提高十进制数字传输的可靠性，就等于提高汉字传输的可靠性。实践证明，采用这种码后，我国汉字电报的差错率大为降低。</p>
+<h4 id="恒比码的出现原因"><a href="#恒比码的出现原因" class="headerlink" title="恒比码的出现原因"></a>恒比码的出现原因</h4><p>我认为在信号传输中，编码和解码方式灵活多样，同时加上码间串扰，使得解码的正确率有所偏差。此时，我们需要一种方式能够方便并且较为准确地帮助我们来判断解码地正确性，恒比码作为方法中的一种，也应运而生。由于恒比码中1的数目和0的数目之比保持恒定，只需要检测接收码组中1的数目是否对，就可知道有无错误，所以检验方式较为便捷，由此发展起来，得到了广泛应用。</p>
+<h4 id="恒比码的发展"><a href="#恒比码的发展" class="headerlink" title="恒比码的发展"></a>恒比码的发展</h4><p>我认为恒比码作为一种检错码，可以很好的应用于信号传输时的检错，在信号传输正确性及效率方面有着独特的作用。而未来通信的检错发展，应该是检错效率高，正确性也较高的趋势，恒比码作为检错码，虽有着自己的检错方式，差错率也相应降低，但随着人们需求的扩张，必将出现检错效率更高的检错方式来代替恒比码，或者恒比码完善自己的种类，来适应不同情况下的信号检错，这样通信方面信号传输的正确率才会大大提高，从而适应未来通信发展的潮流。</p>
 
         </div>
 
@@ -240,11 +242,11 @@
             <div class="post-copyright-info">
                 <div class="article-copyright-info-container">
     <ul>
-        <li>本文标题：Hello World</li>
+        <li>本文标题：通信概论之调幅及恒比码</li>
         <li>本文作者：dongshiwen</li>
-        <li>创建时间：2022-11-28 14:28:16</li>
+        <li>创建时间：2020-12-29 16:34:08</li>
         <li>
-            本文链接：https://dongshiwen02.github.io/2022/11/28/hello-world/
+            本文链接：https://dongshiwen02.github.io/2020/12/29/introduction-to-communication/
         </li>
         <li>
             版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -260,14 +262,29 @@
         
             <div class="article-nav">
                 
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2021/02/26/social-practice-research/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">赴冀鲁豫纪念馆社会实践有感</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
                 
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2021/06/20/operating-system/"
+                           href="/2020/12/26/data-struct-research/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">操作系统实验思考</span>
+                                <span class="post-nav-title-item">数据结构实验</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -412,7 +429,7 @@
             <div class="post-toc-wrap">
     <div class="post-toc">
         <div style="font-size: 1.3rem;margin-top: 0; margin-bottom: 0.8rem; transition-duration: 0.1s;"><i class="fa-solid fa-list-tree"></i> <strong>目录</strong></div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E4%BA%8EAM%E5%9B%9B%E7%A7%8D%E6%96%B9%E6%B3%95%E7%9A%84%E6%8E%A2%E7%A9%B6%E4%B8%8E%E5%88%86%E6%9E%90"><span class="nav-text">关于AM四种方法的探究与分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E8%B0%83%E5%B9%85"><span class="nav-text">关于调幅</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%83%E5%B9%85%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-text">调幅的分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B0%83%E5%B9%85%E7%94%B5%E8%B7%AF"><span class="nav-text">调幅电路</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E6%81%92%E6%AF%94%E7%A0%81%E7%9A%84%E6%80%9D%E8%80%83%E4%B8%8E%E6%8E%A2%E7%B4%A2"><span class="nav-text">关于恒比码的思考与探索</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%81%92%E6%AF%94%E7%A0%81%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-text">恒比码的概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%81%92%E6%AF%94%E7%A0%81%E7%9A%84%E7%A7%8D%E7%B1%BB"><span class="nav-text">恒比码的种类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%81%92%E6%AF%94%E7%A0%81%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-text">恒比码的作用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%81%92%E6%AF%94%E7%A0%81%E7%9A%84%E5%87%BA%E7%8E%B0%E5%8E%9F%E5%9B%A0"><span class="nav-text">恒比码的出现原因</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%81%92%E6%AF%94%E7%A0%81%E7%9A%84%E5%8F%91%E5%B1%95"><span class="nav-text">恒比码的发展</span></a></li></ol></li></ol>
     </div>
 </div>
         </aside>
