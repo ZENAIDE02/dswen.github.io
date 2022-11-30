@@ -9,7 +9,7 @@
     
     <title>
         
-            Hello World |
+            离散数学两道重思考 |
         
         dswen&#39;s Blog
     </title>
@@ -185,7 +185,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation"><h1 style="font-size:2rem; font-weight: bold; margin: 10px 0;">Hello World</h1></span>
+            <span class="title-hover-animation"><h1 style="font-size:2rem; font-weight: bold; margin: 10px 0;">离散数学两道重思考</h1></span>
         </div>
 
         
@@ -202,8 +202,8 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-duotone fa-pen-line"></i>&nbsp;
-        <span class="pc">2022-11-28 14:28:16</span>
-        <span class="mobile">2022-11-28 14:28</span>
+        <span class="pc">2020-11-15 20:48:28</span>
+        <span class="mobile">2020-11-15 20:48</span>
     </span>
     
     
@@ -220,19 +220,53 @@
         
 
         <div class="article-content markdown-body">
-            <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+            <h3 id="命题逻辑推理"><a href="#命题逻辑推理" class="headerlink" title="命题逻辑推理"></a>命题逻辑推理</h3><h4 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h4><p>根据下面的命题，使用命题逻辑推理的方法确定谁是作案者，写出推理过程。<br>一个公安人员审查一件盗窃案，已知的事实如下：<br>（1）A或B盗窃了x;<br>（2）若A盗窃了x，则作案时间不能发生在午夜前；<br>（3）若B证词正确，则在午夜时屋里灯光未灭；<br>（4）若B证词不正确，则作案时间发生在午夜前；<br>午夜时屋里灯光灭了；</p>
+<h4 id="思考过程"><a href="#思考过程" class="headerlink" title="思考过程"></a>思考过程</h4><ol>
+<li>符号化上面的命题，将它们作为条件，B盗窃了x作为结论，得到一个复合命题；</li>
+<li>将复合命题中用到的联结词定义成python语言的函数，用变量表示相应的命题变元。将复合命题写成一个函数表达式。</li>
+<li>函数表达式中的变量赋初值1。如果函数表达式的值为1，则结论有效，A盗窃了x，否则B盗窃了x。</li>
+</ol>
+<h4 id="命题符号化"><a href="#命题符号化" class="headerlink" title="命题符号化"></a>命题符号化</h4><p>L：午夜灯光灭了；B：B的证词正确；<br>N：作案时间发生在午夜前；<br>T（y）：y盗窃了x；<br>（T（B）∨N）∧（！B∨L）∧（B∨！N）→T（B）</p>
+<p>代码实现如下：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">def f(a):</span><br><span class="line">    if a==True:</span><br><span class="line">        return False</span><br><span class="line">    else:</span><br><span class="line">        return True</span><br><span class="line"></span><br><span class="line">def r(b,N,L,B):</span><br><span class="line">    s=(f((b or N)and(f(b)or L)and(B or f(N)))or b)</span><br><span class="line">print(r(1,1,1,1))</span><br></pre></td></tr></table></figure></div>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<h3 id="旅行路线规划问题"><a href="#旅行路线规划问题" class="headerlink" title="旅行路线规划问题"></a>旅行路线规划问题</h3><h4 id="内容-1"><a href="#内容-1" class="headerlink" title="内容"></a>内容</h4><p>加深图的汉密尔顿路及最短路径的理解与应用，将汉密尔顿图与生活实例结合在一起。</p>
+<p>选取了大学所在地沈阳为旅游城市。经过从网上查看相关旅游报告及数据，选取了八个热门旅游景点。分别是沈阳故宫（C1），中街（C2），沈阳世博园（C3），沈阳方特欢乐世界（C4），沈阳森林动物园（C5），清昭陵（C6），关东影视城（C7），棋盘山（C8）。选取游客到达沈阳后所居住酒店选取最近的景点作为出发点，即随机起点，通过汉密尔顿图相关知识的运用，推算出走遍所有景点最合理的路径。</p>
+<!-- ![沈阳路径图](./assets/img/discrete-mathematical-experiment/shenyang_road.png "Hamilton Road") -->
+<!-- ![沈阳路径图](./assets/img/discrete-mathematical-experiment/shenyang_road.png "Hamilton Road") -->
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/discrete-mathematical-experiment/shenyang_road.png"
+                      alt="沈阳路径图" title="Hamilton Road"
+                ></p>
+<h4 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h4><ol>
+<li>首先，经过从网上查看相关旅游报告及数据，我选取了八个热门旅游景点。分别是沈阳故宫（C1），中街（C2），沈阳世博园（C3），沈阳方特欢乐世界（C4），沈阳森林动物园（C5），清昭陵（C6），关东影视城（C7），棋盘山（C8）。结合搜索的旅游心理调研报告，发现人们在景点的选取上考虑的距离，交通价格，时间等等。因考虑到公共交通工具的时间成本不固定等因素，权重表里的时间及价格皆为打车或自驾游。根据调研报告显示的比重，决定用距离<em>0.5+时间</em>0.3+价格*0.2作为两景点之间的权重。</li>
+<li>根据权重表画出汉密尔顿图，将实际地图抽象化为以下模型。<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/discrete-mathematical-experiment/shenyang_road_model.png"
+                      alt="沈阳路径模型图" title="shenyang_road_model"
+                ></li>
+<li>构建模型，经过对问题的分析，决定最终算法。用C语言进行编程，得到了最短路径。<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/discrete-mathematical-experiment/shenyang_road_C_solution.png"
+                      alt="沈阳路径算法解决图" title="shenyang_road_C_solution"
+                ></li>
+<li>利用代码运行结果得到了最短的汉密尔顿回路：“沈阳故宫→中街→清昭陵→棋盘山→沈阳森林动物园→沈阳方特欢乐世界→沈阳世博园→关东影视城”，成功地解决了最短路径的问题。</li>
+</ol>
+<h4 id="创新点"><a href="#创新点" class="headerlink" title="创新点"></a>创新点</h4><ol>
+<li>首先是问题的提出方面，选择了沈阳是便于在大学生活中将这一实验成果真正运用，而具体景点的选取则是按照旅游景点热榜自高到低选取了前八位的景点使其最具有代表性。</li>
+<li>在权重的处理方面，则是通过与相关调查结果综合给定比例，综合考虑到距离，时间，交通成本等多方面因素，从而使获得数据更为可靠精确。而这一机械运算过程通过Excel的功能可以较为轻松地实现，体现了多元应用数据处理工具的重要作用，同时也提高了工作效率。</li>
+<li>在数据获取方面，采用了百度地图的智行算法。把每两个景区之间的路径抽象为智行建议规划出的路径，并为了控制变量均选用此标准。而且在智行的推荐中恰好提供了两地之间交通的估计时间与使用交通工具的花销，即成本，在对时间进行四舍五入，保留一位小数的处理后，存入表格。使得距离时间等数据更加真实可靠。</li>
+<li>考虑到算权重最小值将会是一个比较繁琐的工作量，而且适用于景点较少的旅行图中。如果景点很多，算权重的方法将显得笨拙而不适用。因此，我们采用了用代码实现这一过程的形式，这样有较大的可维护空间，距离时间等量的改变也不会对工作造成很大的影响，具有一定的稳定性。</li>
+</ol>
+<h4 id="遇到的问题和解决方案"><a href="#遇到的问题和解决方案" class="headerlink" title="遇到的问题和解决方案"></a>遇到的问题和解决方案</h4><ol>
+<li>本次实验中遇到的第一个问题是权重的量化比例的确定。为了使权重比例更加符合人们的旅游习惯和思维方式，我去查阅了相关资料，拟定了时间和成本加权获得权重值这一方法，这种方法使得获得的数据更为实用化，更有助于现实生活中问题的解决。</li>
+<li>代码算法的确定。因为以前没有接触过求最短路径的问题，所以不知道该采用什么样的算法会使得整个的代码过程变得简洁可维护。小组在开始时决定利用算法，将所有的汉密尔顿回路求出，并遍历这些回路，最终得到最短路径。但这些数据路径会偏多，虽然思路简单但是并不太适合景点数量非常多的时候。经过代码的不同形式的确定，以及查阅了一些常用的求最短回路的算法，我们才确定了本次实验所使用的代码过程。</li>
+</ol>
+<h4 id="心得总结"><a href="#心得总结" class="headerlink" title="心得总结"></a>心得总结</h4><p>这个问题让我更加理解了汉密尔顿图以及带权图等图论的知识点和应用，不仅使我在课堂上学的知识更加牢固，而且加强了我利用理论知识解决生活中实际问题的能力，让我感受到离散数学在生活中的重要作用。另外，此次还锻炼了我利用编程工具实现一个能帮助我们在实际生活中对一些问题进行快速解决的工具。我深刻认识到代码编程在解决问题中的重要作用以及效率之大，解决了一些用人力繁琐计算的问题。今后学习算法设计时，也要多考虑实际的应用场景。</p>
 
         </div>
 
@@ -240,11 +274,11 @@
             <div class="post-copyright-info">
                 <div class="article-copyright-info-container">
     <ul>
-        <li>本文标题：Hello World</li>
+        <li>本文标题：离散数学两道重思考</li>
         <li>本文作者：dongshiwen</li>
-        <li>创建时间：2022-11-28 14:28:16</li>
+        <li>创建时间：2020-11-15 20:48:28</li>
         <li>
-            本文链接：https://dongshiwen02.github.io/2022/11/28/hello-world/
+            本文链接：https://dongshiwen02.github.io/2020/11/15/discrete-mathematical-experiment/
         </li>
         <li>
             版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -260,14 +294,29 @@
         
             <div class="article-nav">
                 
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2020/11/25/software-requirement-analysis/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">软件需求规格说明与设计</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
                 
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2020/11/28/computer-composition-principle-experiment/"
+                           href="/2020/10/30/%E5%9C%A8%E6%90%AD%E5%BB%BA-blog-%E8%BF%87%E7%A8%8B%E4%B8%AD%E5%8F%91%E7%8E%B0%E7%9A%84-cdn-%E4%B8%8E%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">计算机组成原理实验</span>
+                                <span class="post-nav-title-item">在搭建 blog 过程中发现的 cdn 与图片问题</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -412,7 +461,7 @@
             <div class="post-toc-wrap">
     <div class="post-toc">
         <div style="font-size: 1.3rem;margin-top: 0; margin-bottom: 0.8rem; transition-duration: 0.1s;"><i class="fa-solid fa-list-tree"></i> <strong>目录</strong></div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%91%BD%E9%A2%98%E9%80%BB%E8%BE%91%E6%8E%A8%E7%90%86"><span class="nav-text">命题逻辑推理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%85%E5%AE%B9"><span class="nav-text">内容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%9D%E8%80%83%E8%BF%87%E7%A8%8B"><span class="nav-text">思考过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%91%BD%E9%A2%98%E7%AC%A6%E5%8F%B7%E5%8C%96"><span class="nav-text">命题符号化</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%85%E8%A1%8C%E8%B7%AF%E7%BA%BF%E8%A7%84%E5%88%92%E9%97%AE%E9%A2%98"><span class="nav-text">旅行路线规划问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%85%E5%AE%B9-1"><span class="nav-text">内容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E8%BF%87%E7%A8%8B"><span class="nav-text">解决过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E6%96%B0%E7%82%B9"><span class="nav-text">创新点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E5%92%8C%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-text">遇到的问题和解决方案</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BF%83%E5%BE%97%E6%80%BB%E7%BB%93"><span class="nav-text">心得总结</span></a></li></ol></li></ol>
     </div>
 </div>
         </aside>

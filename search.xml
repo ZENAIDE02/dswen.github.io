@@ -18,4 +18,207 @@
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
   </entry>
+  <entry>
+    <title>在搭建 blog 过程中发现的 cdn 与图片问题</title>
+    <url>/2020/10/30/%E5%9C%A8%E6%90%AD%E5%BB%BA-blog-%E8%BF%87%E7%A8%8B%E4%B8%AD%E5%8F%91%E7%8E%B0%E7%9A%84-cdn-%E4%B8%8E%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>离散数学两道重思考</title>
+    <url>/2020/11/15/discrete-mathematical-experiment/</url>
+    <content><![CDATA[<h3 id="命题逻辑推理"><a href="#命题逻辑推理" class="headerlink" title="命题逻辑推理"></a>命题逻辑推理</h3><h4 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h4><p>根据下面的命题，使用命题逻辑推理的方法确定谁是作案者，写出推理过程。<br>一个公安人员审查一件盗窃案，已知的事实如下：<br>（1）A或B盗窃了x;<br>（2）若A盗窃了x，则作案时间不能发生在午夜前；<br>（3）若B证词正确，则在午夜时屋里灯光未灭；<br>（4）若B证词不正确，则作案时间发生在午夜前；<br>午夜时屋里灯光灭了；</p>
+<h4 id="思考过程"><a href="#思考过程" class="headerlink" title="思考过程"></a>思考过程</h4><ol>
+<li>符号化上面的命题，将它们作为条件，B盗窃了x作为结论，得到一个复合命题；</li>
+<li>将复合命题中用到的联结词定义成python语言的函数，用变量表示相应的命题变元。将复合命题写成一个函数表达式。</li>
+<li>函数表达式中的变量赋初值1。如果函数表达式的值为1，则结论有效，A盗窃了x，否则B盗窃了x。</li>
+</ol>
+<h4 id="命题符号化"><a href="#命题符号化" class="headerlink" title="命题符号化"></a>命题符号化</h4><p>L：午夜灯光灭了；B：B的证词正确；<br>N：作案时间发生在午夜前；<br>T（y）：y盗窃了x；<br>（T（B）∨N）∧（！B∨L）∧（B∨！N）→T（B）</p>
+<p>代码实现如下：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">def f(a):</span><br><span class="line">    if a==True:</span><br><span class="line">        return False</span><br><span class="line">    else:</span><br><span class="line">        return True</span><br><span class="line"></span><br><span class="line">def r(b,N,L,B):</span><br><span class="line">    s=(f((b or N)and(f(b)or L)and(B or f(N)))or b)</span><br><span class="line">print(r(1,1,1,1))</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="旅行路线规划问题"><a href="#旅行路线规划问题" class="headerlink" title="旅行路线规划问题"></a>旅行路线规划问题</h3><h4 id="内容-1"><a href="#内容-1" class="headerlink" title="内容"></a>内容</h4><p>加深图的汉密尔顿路及最短路径的理解与应用，将汉密尔顿图与生活实例结合在一起。</p>
+<p>选取了大学所在地沈阳为旅游城市。经过从网上查看相关旅游报告及数据，选取了八个热门旅游景点。分别是沈阳故宫（C1），中街（C2），沈阳世博园（C3），沈阳方特欢乐世界（C4），沈阳森林动物园（C5），清昭陵（C6），关东影视城（C7），棋盘山（C8）。选取游客到达沈阳后所居住酒店选取最近的景点作为出发点，即随机起点，通过汉密尔顿图相关知识的运用，推算出走遍所有景点最合理的路径。</p>
+<!-- ![沈阳路径图](./assets/img/discrete-mathematical-experiment/shenyang_road.png "Hamilton Road") -->
+<!-- ![沈阳路径图](./assets/img/discrete-mathematical-experiment/shenyang_road.png "Hamilton Road") -->
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/discrete-mathematical-experiment/shenyang_road.png"
+                      alt="沈阳路径图" title="Hamilton Road"
+                ></p>
+<h4 id="解决过程"><a href="#解决过程" class="headerlink" title="解决过程"></a>解决过程</h4><ol>
+<li>首先，经过从网上查看相关旅游报告及数据，我选取了八个热门旅游景点。分别是沈阳故宫（C1），中街（C2），沈阳世博园（C3），沈阳方特欢乐世界（C4），沈阳森林动物园（C5），清昭陵（C6），关东影视城（C7），棋盘山（C8）。结合搜索的旅游心理调研报告，发现人们在景点的选取上考虑的距离，交通价格，时间等等。因考虑到公共交通工具的时间成本不固定等因素，权重表里的时间及价格皆为打车或自驾游。根据调研报告显示的比重，决定用距离<em>0.5+时间</em>0.3+价格*0.2作为两景点之间的权重。</li>
+<li>根据权重表画出汉密尔顿图，将实际地图抽象化为以下模型。<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/discrete-mathematical-experiment/shenyang_road_model.png"
+                      alt="沈阳路径模型图" title="shenyang_road_model"
+                ></li>
+<li>构建模型，经过对问题的分析，决定最终算法。用C语言进行编程，得到了最短路径。<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/discrete-mathematical-experiment/shenyang_road_C_solution.png"
+                      alt="沈阳路径算法解决图" title="shenyang_road_C_solution"
+                ></li>
+<li>利用代码运行结果得到了最短的汉密尔顿回路：“沈阳故宫→中街→清昭陵→棋盘山→沈阳森林动物园→沈阳方特欢乐世界→沈阳世博园→关东影视城”，成功地解决了最短路径的问题。</li>
+</ol>
+<h4 id="创新点"><a href="#创新点" class="headerlink" title="创新点"></a>创新点</h4><ol>
+<li>首先是问题的提出方面，选择了沈阳是便于在大学生活中将这一实验成果真正运用，而具体景点的选取则是按照旅游景点热榜自高到低选取了前八位的景点使其最具有代表性。</li>
+<li>在权重的处理方面，则是通过与相关调查结果综合给定比例，综合考虑到距离，时间，交通成本等多方面因素，从而使获得数据更为可靠精确。而这一机械运算过程通过Excel的功能可以较为轻松地实现，体现了多元应用数据处理工具的重要作用，同时也提高了工作效率。</li>
+<li>在数据获取方面，采用了百度地图的智行算法。把每两个景区之间的路径抽象为智行建议规划出的路径，并为了控制变量均选用此标准。而且在智行的推荐中恰好提供了两地之间交通的估计时间与使用交通工具的花销，即成本，在对时间进行四舍五入，保留一位小数的处理后，存入表格。使得距离时间等数据更加真实可靠。</li>
+<li>考虑到算权重最小值将会是一个比较繁琐的工作量，而且适用于景点较少的旅行图中。如果景点很多，算权重的方法将显得笨拙而不适用。因此，我们采用了用代码实现这一过程的形式，这样有较大的可维护空间，距离时间等量的改变也不会对工作造成很大的影响，具有一定的稳定性。</li>
+</ol>
+<h4 id="遇到的问题和解决方案"><a href="#遇到的问题和解决方案" class="headerlink" title="遇到的问题和解决方案"></a>遇到的问题和解决方案</h4><ol>
+<li>本次实验中遇到的第一个问题是权重的量化比例的确定。为了使权重比例更加符合人们的旅游习惯和思维方式，我去查阅了相关资料，拟定了时间和成本加权获得权重值这一方法，这种方法使得获得的数据更为实用化，更有助于现实生活中问题的解决。</li>
+<li>代码算法的确定。因为以前没有接触过求最短路径的问题，所以不知道该采用什么样的算法会使得整个的代码过程变得简洁可维护。小组在开始时决定利用算法，将所有的汉密尔顿回路求出，并遍历这些回路，最终得到最短路径。但这些数据路径会偏多，虽然思路简单但是并不太适合景点数量非常多的时候。经过代码的不同形式的确定，以及查阅了一些常用的求最短回路的算法，我们才确定了本次实验所使用的代码过程。</li>
+</ol>
+<h4 id="心得总结"><a href="#心得总结" class="headerlink" title="心得总结"></a>心得总结</h4><p>这个问题让我更加理解了汉密尔顿图以及带权图等图论的知识点和应用，不仅使我在课堂上学的知识更加牢固，而且加强了我利用理论知识解决生活中实际问题的能力，让我感受到离散数学在生活中的重要作用。另外，此次还锻炼了我利用编程工具实现一个能帮助我们在实际生活中对一些问题进行快速解决的工具。我深刻认识到代码编程在解决问题中的重要作用以及效率之大，解决了一些用人力繁琐计算的问题。今后学习算法设计时，也要多考虑实际的应用场景。</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>软件需求规格说明与设计</title>
+    <url>/2020/11/25/software-requirement-analysis/</url>
+    <content><![CDATA[<h3 id="系统概述"><a href="#系统概述" class="headerlink" title="系统概述"></a>系统概述</h3><p>对于软件需求说明，我认为不仅要学习系统知识，还应该深入某个案例具体分析，所以我们结合自身所接触，最终选取了高校调查问卷管理系统，进行系统应用。</p>
+<p>本系统是高校调查问卷管理系统，由问卷设计人员设计调查问卷，导入师生信息后发送问卷链接到个人邮箱，从学生和教师获知其对学校、专业、教学情况、教学资源配套、学校管理水平等多方面评价的信息收集，填写完成后问卷数据存储至数据库，由系统对数据整合后，可查询数据进行数据分析汇报。</p>
+<ul>
+<li>业务需求：</li>
+</ul>
+<ol>
+<li>系统能够设计并发布自定义数量和多种题目类型（包括单项选择题、多项选择题、填空题的问卷，并提供问卷设计模板与参考题库，问卷数据可以存储至数据库</li>
+<li>系统能够导入待问卷人员（包括学生、教师）的信息，并检索信息格式和信息空缺。</li>
+<li>系统能够通过短信、邮件的方式将问卷链接发布至待问卷人员的手机或者<br>邮箱中。</li>
+<li>系统能够将待问卷人员的填写数据添加到系统数据库中。</li>
+<li>系统能够对问卷结果进行统计分析，查询时可以以图表方式（折线，柱状图等等）可视化，并导出到本地文件。</li>
+</ol>
+<ul>
+<li>功能需求：</li>
+</ul>
+<ol>
+<li>   问卷设计:问卷设计人员由问卷模板设置问题完成问卷设计</li>
+<li>   问卷发布：问卷发布人员根据导入的邮箱（优先级高）和电话号码（第二选择）将问卷链接发布给待问卷人员</li>
+<li>   问卷填写：填写完成问卷后提交，数据保存至数据库</li>
+<li>   数据查询：政府人员和校方对问卷结果进行查询，分析反映的问题。</li>
+</ol>
+<h3 id="编写目的"><a href="#编写目的" class="headerlink" title="编写目的"></a>编写目的</h3><ul>
+<li>便于用户、开发人员进行理解和交流。 </li>
+<li>反映出用户问题的结构，可以作为软件开发工作的基础和依据。 </li>
+<li>提高软件开发过程的能见度。把开发过程中发生的事件以某种可阅读的形式记录在文档中。</li>
+<li>作为开发人员在一定阶段的工作成果和结束标志。 </li>
+<li>记录开发过程中的有关信息，便于协调以后的软件、开发、使用和维护。</li>
+</ul>
+<h3 id="读者对象"><a href="#读者对象" class="headerlink" title="读者对象"></a>读者对象</h3><ul>
+<li>设计员：根据架构对软件系统进行复杂度分析，使成本收益最大化。</li>
+<li>程序员：根据架构对系统进行优化。</li>
+<li>测试员：根据交互模型，对软件产品进行功能性测试和非功能性测试，记录反馈存在的问题。</li>
+<li>用户：了解预期产品的功能和性能。</li>
+</ul>
+<h3 id="架构设计目标和约束"><a href="#架构设计目标和约束" class="headerlink" title="架构设计目标和约束"></a>架构设计目标和约束</h3><h4 id="架构设计目标"><a href="#架构设计目标" class="headerlink" title="架构设计目标"></a>架构设计目标</h4><p>架构设计的目标是将系统分析阶段所提出的反映用户需求的系统逻辑方案转换成可以实施的基于计算机与通信系统的物理方案，为后续系统开发提供指导和依据。通过架构设计，将系统分为几个模块，确定每个模块的功能以及每个模块之间的关联。对每个模块进行详细的类设计，使模块能够完整的描述系统功能。</p>
+<p>架构设计的主要目的是为了分析软件复杂度，解决软件系统复杂度带来的问题。优秀的架构设计能更好的收益最大化。</p>
+<h4 id="约束需求"><a href="#约束需求" class="headerlink" title="约束需求"></a>约束需求</h4><ul>
+<li>软件质量约束：</li>
+</ul>
+<ol>
+<li>调查表应该通过打开链接在浏览器上进行填写。</li>
+<li>在一次提交过后不可以重新提交，除非发布问卷方再次发送问卷。</li>
+<li>需要区分使用权限，高级权限可以进行问卷编辑和查看所有用户的数据，但低级权限只能查看指定范围的数据。</li>
+<li>通过号码或者邮箱发送只选择其中一个，邮箱的优先级更高，因为短信发送可能会被当作垃圾短信屏蔽。</li>
+<li>当为匿名调查表模式时，个人信息在查询时不可见，仅能在数据库中查询。</li>
+<li>填写时，数据随时保存至服务器，做到及时保存，防止数据丢失。</li>
+<li>问题数量应该有限制，问题不能在一页显示完时，规定翻页式</li>
+<li>如果数据汇总时有数据缺失或者不符合要求，在查询时应该列出该数据，并在数据统计时排除在外。</li>
+<li>如果两种方式都无法发送问卷，则标记该数据为未发送</li>
+<li>如果数据出错的问卷数量过多，需要进行报备，列出出错的问卷，并定位出错的问卷填写者，进行二次发送问卷。</li>
+<li>严格权限访问控制，用户在经过身份认证后，只能访问其权限范围内的数据，只能进行其权限范围内的操作。</li>
+<li>降低代码与代码之间的耦合，使得能够更容易地进行功能地扩展。建立高内聚，低耦合模块。使用结构化程序设计技术，提高现有系统的可维护性。</li>
+</ol>
+<ul>
+<li>安全性约束：</li>
+</ul>
+<ol>
+<li>能经受来自互联网的一般性恶意攻击。如病毒（包括木马）攻击、口令猜测攻击、黑客入侵等。至少99%的攻击需要在10秒内检测到。</li>
+<li>程序出现异常后，要及时报警，要有补救措施，报警可以发送给人，也可以发送给系统自动处理，如：服务降级、自动重启等。</li>
+<li>只有授权的用户才能动用和修改数据库中学生和教师的个人信息，而且必须防止信息的非法、非授权的泄漏。</li>
+</ol>
+<ul>
+<li>用户界面的约束：<br>界面简洁美观，布局统一，易于用户理解和操作。</li>
+</ul>
+<h3 id="系统总体设计"><a href="#系统总体设计" class="headerlink" title="系统总体设计"></a>系统总体设计</h3><h4 id="设计思想"><a href="#设计思想" class="headerlink" title="设计思想"></a>设计思想</h4><p>整个问卷系统采用三层架构的模式，分为用户界面层——业务逻辑层——数据访问层三层。<br>用户界面层主要包含主要的功能界面管理设定，包括登录注册，问卷设计，问卷填写，数据查询。业务逻辑层采用的是外观设计模式。创建实体类接收来自界面层的访问请求，并分别调用问卷编辑端，问卷填写端，后台端中的子系统进行数据请求的处理。<br>数据访问层以数据库为主，保存客户信息和问卷信息，同时对数据库要有能够实现增删改查等操作的工具类，负责存储数据以及对外发送数据的功能。</p>
+<h4 id="软件逻辑架构设计"><a href="#软件逻辑架构设计" class="headerlink" title="软件逻辑架构设计"></a>软件逻辑架构设计</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/software-requirement-analysis/model_design.png"
+                      alt="软件逻辑架构设计" title="软件逻辑架构设计"
+                ></p>
+<p>视图层：用来存储相关的页面，负责向用户展现系统信息、反馈数据，以及获取用户操作和请求。其中包括查询结果，登录注册，问卷设计发布，问卷填写等相关的界面。<br>业务逻辑层：进行逻辑的代码编写。主要以三个功能为主体进行，分为三个端口，问卷编辑端，问卷填写端和发布端，端口中的子系统进行请求的处理。数据访问层：其中主要存储了系统所需要的相关数据，如待问卷人员的基本信息，管理人员的登录信息，问卷回收时所收集到的问卷的内容信息。并随时等待业务逻辑层的调用。<br>实体类则放置了系统运行所需要的所有的实体类以及其主要的属性：数据分析人员/问卷发布人员（管理人员的登录用户名密码等），待问卷人员（基本信息以及联系方式）以及做好后发布的问卷（问卷问题的集合）和提交后的问卷（填写的问卷数据）。</p>
+<h4 id="系统主要业务流程设计"><a href="#系统主要业务流程设计" class="headerlink" title="系统主要业务流程设计"></a>系统主要业务流程设计</h4><table>
+<thead>
+<tr>
+<th>标题</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>用例名称</td>
+<td>设计调查问卷</td>
+</tr>
+<tr>
+<td>用例简要说明</td>
+<td>根据问卷调研出的问卷需求允许政府账号对问卷进行设计</td>
+</tr>
+<tr>
+<td>前置条件</td>
+<td>该账号拥有系统识别的高级权限</td>
+</tr>
+</tbody></table>
+<p>事件流：（1）基本流 当政府账号登陆成功决定设计调查问卷的时候用例开始<br>①政府或者校方登陆系统<br>②系统判断用户权限等级，高权限级别进行问卷设计，低权限事件流结束<br>（2）备选流<br>①进行问卷设计，选择新建项目或者在工作台编辑未完成的缓存项目<br>②如果选择新建项目，则选择一个模板进行设计<br>③进行问题类型的选择和设计，分为选择题和填空题<br>④问卷未完成退出系统会保存当前编辑状态并存储至工作台，若完成则保存问卷等待发送，移出工作台<br>（3）异常流<br>用户登录使用的账号不存在，提示注册或者更换账号登录。<br>登录密码错误提示重新输入，输错5次后会锁定10分钟<br>后置条件    问卷保存在系统中等待校方信息录入后进行发布<br>扩展点    根据问卷设计者选择的问卷主题提供对应的题库进行参考<br>优先级    高</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/software-requirement-analysis/model_design.png"
+                      alt="软件逻辑架构设计" title="软件逻辑架构设计"
+                ><br>设计调查问卷交互图：<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/software-requirement-analysis/questionnaire_interaction_diagram.png"
+                      alt="设计调查问卷交互图" title="设计调查问卷交互图"
+                ></p>
+<p>导入学生和教师数据交互图：<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/software-requirement-analysis/data_transfer.png"
+                      alt="导入学生和教师数据交互图" title="导入学生和教师数据交互图"
+                ></p>
+<p>发布问卷交互图:<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/software-requirement-analysis/questionnaire_publish.png"
+                      alt="发布问卷交互图" title="发布问卷交互图"
+                ></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>计算机组成原理实验</title>
+    <url>/2020/11/28/computer-composition-principle-experiment/</url>
+    <content><![CDATA[<p>整理了一下计组最后的两个实验。</p>
+<h3 id="指令-微指令设计实验"><a href="#指令-微指令设计实验" class="headerlink" title="指令/微指令设计实验"></a>指令/微指令设计实验</h3><p>COP2000计算机组成原理实验仪，可以由用户自己设计指令/微指令系统，这样用户可以在现有的指令系统上进行扩充，加上一些较常用的指令，也可重新设计一套完全不同的指令/微指令系统。</p>
+<p>因为硬件系统需要指令机器码的最低两位做为R0-R3寄存器寻址用，所以指令机器码要忽略掉这两位。这四条指令的机器码分别为04H，08H，0CH，10H。其它指令的设计相同。</p>
+<p>程序开始要执行的第一条微指令应是取指操作，因为程序复位后，PC和uPC的值都为0，所以微程序的0地址处就是程序执行的第一条取指的微指令。根据此功能，首先选中“_FATCH_”指令的第一行，观察窗口下方的各控制信号，有“勾”表示信号为高，处于无效状态，去掉“勾”信号为低，为有效状态。要从EM中读数，EMRD必需有效，去掉信号下面的“勾”使其有效；读EM的地址要从PC输出，所以PCOE要有效，允许PC输出，去掉PCOE下面的“勾”，PCOE有效同时还会使PC加1，准备读EM的下一地址；IREN是将EM读出的指令码存入uPC和IR，所以要去掉IREN的“勾”使其有效。这样，取指操作的微指令就设计好了，取指操作的微指令的值为0CBFFFFH。</p>
+<p>第一条指令是把立即数装入累加器A，首先要从EM中读出立即数，并送到数据总线DBUS，再从DBUS上将数据打入累加器A中，按照这个要求，从EM中读数据，EMRD应该有效，EM的地址由PC输出，PCOE必需有效，读出的数据送到DBUS，EMEN也应有效,要求将数据存入A中,AEN也要有效，选中“LD  A，#II”指令的第一行，这条微指令的值为0C7FFF7H。为了保证程序的连续执行，每条指令的最后必需是取指令，取出下条将要执行的指令。所以微指令的值为0CBFFFFH。</p>
+<p>第二条指令为立即数加法指令，立即数加可分两步，首先从EM中读出立即数，送到DBUS，并存入工作寄存器W中，从EM中读数，EMRD应有效，读EM的地址由PC输出，PCOE要有效，读出的数据要送到DBUS，EMEN应有效，数据存入W中，WEN应有效，根据描述，这条微指令的值为0C7FFEFH。第二步，执行加法操作，并将结果存入A中。执行加法操作，S2S1S0的值应为000(二进制)，结果无需移位直接输出到DBUS，X2X1X0的值就要为100(二进制)，从DBUS将数据再存入A中，AEN应有效。与此同时，ABUS和IBUS空闲，取指操作可以并行执行，也就是以PC为地址，从EM中读出下条将要执行指令的机器码，并打入IR和uPC中，根据取指操作的说明，EMRD、PCOE、IREN要有效，根据上面描述，选中该指令的第二行，将EMRD、PCOE、IREN、X2X1X0、AEN、S2S1S0都置成有效和相应的工作方式，此微指令的值为0CBFF90H。</p>
+<p>“GOTO  MM”为无条件跳转，所要执行的操作为从EM中读出目标地址，送到数据总线DBUS上，并存入PC中，实现程序跳转。从EM中读数，EMRD要有效，读EM的地址由PC输出，PCOE有效，数据送到DBUS，EMEN要有效，将数据打入PC中，由两位决定，ELP有效，指令寄存器IR的第三位IR3应为1，由于本指令机器码为0CH，存入IR后，IR3为1。选中“GOTO  MM”指令的第一行，将上面的EMRD、PCOE、EMEN、ELP设成低，使其成为有效状态，结合指令的第三位，实现程序跳转，这条微指令的值为0C6FFFFH。下条微指令应为取指操作，微指令的值为0CBFFFFH。</p>
+<p>“OUTA”，将累加器的内容输出到输出端口。其操作为累加器A不做运算，直通输出，ALU结果不移位输出到DBUS，DBUS上的数据存入输出端口OUT。累加器A直通输出结果，S2S1S0值要为111(二进制)，ALU结果不移位输出到数据总线DBUS，X2X1X0的值要等于100(二进制)，DBUS数据要打入OUT，那么OUTEN应有效。与此同时，ABUS和IBUS空闲，取指操作可以并行执行，也就是以PC为地址，从EM中读出下条将要执行指令的机器码，并打入IR和uPC中，根据取指操作的说明，EMRD、PCOE、IREN要有效，综上所述，选中此指令的第一行，将EMRD、PCOE、IREN、OUTEN、X2X1X0、S2S1S0置成有效状态和相应的工作方式，微指令的值为0CBDF9FH。</p>
+<h3 id="FPGA"><a href="#FPGA" class="headerlink" title="FPGA"></a>FPGA</h3><p>实验所采用的开发板为Nexys4-DDR。它采用了Xilinx Artix-7 FPGA芯片，它是一款简单易用的数字电路开发平台，可以支持在课堂环境中来设计一些行业应用。大规模、高容量的FPGA, 海量的外部存储, 各种USB、以太网、以及其它接口, 这些让Nexys4-DDR 能够满足从入门级组合逻辑电路到强大的嵌入式系统的设计。同时，板上集成的加速度、温度传感器，MEMs数字麦克风，扬声器放大器以及大量的I/O设备，让Nexys4-DDR不需要增添额外组件而用于各种各样的设计。</p>
+<p>实验设计主要代码如下：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">library IEEE;</span><br><span class="line">use IEEE.STD_LOGIC_1164.ALL;</span><br><span class="line"></span><br><span class="line">entity Switch_LEDs is</span><br><span class="line">    Port ( switch_0 : in STD_LOGIC;</span><br><span class="line">        switch_1 : in STD_LOGIC;</span><br><span class="line">        LED_0 : out STD_LOGIC;</span><br><span class="line">        LED_1 : out STD_LOGIC);</span><br><span class="line">end Switch_LEDs;</span><br><span class="line"></span><br><span class="line">architecture Behavioral of Switch_LEDs is</span><br><span class="line"></span><br><span class="line">begin</span><br><span class="line">LED_0 &lt;= switch_0;</span><br><span class="line">LED_1 &lt;= switch_1;</span><br><span class="line">end Behavioral;</span><br></pre></td></tr></table></figure></div>
+
+<p>约束文件如下：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">set_property PACKAGE_PIN J15 [get_ports switch_0] </span><br><span class="line">set_property PACKAGE_PIN L16 [get_ports switch_1] </span><br><span class="line">set_property PACKAGE_PIN H17 [get_ports LED_0] </span><br><span class="line">set_property PACKAGE_PIN K15 [get_ports LED_1] </span><br><span class="line">set_property IOSTANDARD LVCMOS33 [get_ports switch_0] </span><br><span class="line">set_property IOSTANDARD LVCMOS33 [get_ports switch_1] </span><br><span class="line">set_property IOSTANDARD LVCMOS33 [get_ports LED_0] </span><br><span class="line">set_property IOSTANDARD LVCMOS33 [get_ports LED_1]</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="实验记录"><a href="#实验记录" class="headerlink" title="实验记录"></a>实验记录</h3><p>实验记录为首先会看到Nexys4- DDR 上表示烧写完成的Done 指示会点亮，接着拨动SW0，LD0指示灯亮，LD1指示灯不亮。恢复SW0,拨动SW1，LD0指示灯不亮，LD1指示灯亮。同时拨动SW0和SW1，可以看到LD0和LD1都会亮，将SW0和SW1恢复，则LD0和LD1指示灯都不亮。</p>
+<h3 id="总结体会"><a href="#总结体会" class="headerlink" title="总结体会"></a>总结体会</h3><p>FPGA是一个可编程芯片，在一块较小的电路板上就能完成很多操作，同时上面还有多种数据线接口，能够实现较为复杂和多样的测试，同时上面还有温度传感器，和印象中的芯片有很多不一样。</p>
+<p>FPGA 器件属于专用集成电路中的一种半定制电路，是可编程的逻辑列阵，能够有效的解决原有的器件门电路数较少的问题。FPGA 的基本结构包括可编程输入输出单元，可配置逻辑块，数字时钟管理模块，嵌入式块RAM，布线资源，内嵌专用硬核，底层内嵌功能单元。<br>通过对FPGA电路的学习和实验，我对计算机组成原理的课程有了更深的认识，同时，它以一种简洁，快速的方式展现了软件的编程是如何在计算机的内部运行并发挥作用的，就如同一座桥连通了软件编程和硬件的功能。通过编写设计文件和约束文件，用USB输入给电路板，即可在硬件上体现出软件设计的功能。</p>
+<h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>前期，我学习了计算机组成原理这门课程，在学习中，掌握了一些基础理论，但是实践才是检验真理的唯一标准，通过这几次实验，我才真正理解计算机的基本组成与工作原理，了解计算机的内部运行机理，掌握计算机系统设计的基本技术，更重要的是通过实验培养了我们独立分析、解决问题的能力。</p>
+<p>这几次实验使我对单处理机系统的组成和工作原理、并行体系结构有了更深刻的了解和认识。这对于建立整机概念，研究各功能部件的相互连接与相互作用，进行各功能部件的逻辑设计，都有很大的帮助。我掌握寄存器器件和寄存器组的工作原理，了解COP2000模型机所用主要寄存器的位置、作用、数据通路及控制信号;了解运算器模块如何连接以及数据通路;领会了课堂教学中关于ALU的功能特性的知识;学会用CPLD实现运算器。掌握运算器核心器件ALU的输出连入数据总线前常见处理方法;掌握控制器的工作原理;掌握由控制器、运算器、存储器、组成的模型机的工作原理;通过运行各种简单程序，掌握机器指令和微指令的关系等等。我很珍惜这次在实验中的思考与感悟，并且以后也会多多接触计算机组成原理的相关知识，拓宽自己的知识面。</p>
+]]></content>
+  </entry>
 </search>
