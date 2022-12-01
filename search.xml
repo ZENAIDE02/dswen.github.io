@@ -387,4 +387,38 @@
 <h3 id="实践成果"><a href="#实践成果" class="headerlink" title="实践成果"></a>实践成果</h3><p>获得 “东北大学社会实践优秀个人” 奖项。</p>
 ]]></content>
   </entry>
+  <entry>
+    <title>git 常用命令总结</title>
+    <url>/2021/12/01/git-basic-use/</url>
+    <content><![CDATA[<h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><p>为了方便之后用 github 托管项目，整理了一些 git 基础的使用场景，后续可继续补充添加。</p>
+<h3 id="github-更新"><a href="#github-更新" class="headerlink" title="github 更新"></a>github 更新</h3><p>为避免带有“种族歧视色彩”，从2020年10月1日起， 在 github 上创建的所有新的源代码仓库将默认被命名为 “main”，而不是原先的”master”。</p>
+<h3 id="Git-本地项目与远端连接"><a href="#Git-本地项目与远端连接" class="headerlink" title="Git 本地项目与远端连接"></a>Git 本地项目与远端连接</h3><ol>
+<li>本地新建 repo。</li>
+<li>repo 文件夹中使用 git init 命令，之后文件夹中多出来一个 .git 文件夹。</li>
+</ol>
+<p>若之前与其他的远端建立关联，现在想断开，有两种方法。</p>
+<ul>
+<li>Git Bash Here 输入<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">git remote remove origin</span><br></pre></td></tr></table></figure></div></li>
+<li>直接删除本地库 .git 文件夹。</li>
+</ul>
+<ol start="3">
+<li>关联远程库。<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">git remote add origin &lt;url:如https://github.com&gt;</span><br></pre></td></tr></table></figure></div></li>
+<li>将文件添加到暂存区。<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">git add .</span><br></pre></td></tr></table></figure></div></li>
+<li>将文件提交至仓库<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">git commit -m &quot;feat:/bugfix:&quot;</span><br></pre></td></tr></table></figure></div></li>
+<li>git pull 获取远程库与本地合并<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">git pull origin main</span><br></pre></td></tr></table></figure></div></li>
+<li>将本地内容推送至远程<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">git push origin main</span><br></pre></td></tr></table></figure></div></li>
+</ol>
+<h3 id="Git-克隆远端"><a href="#Git-克隆远端" class="headerlink" title="Git 克隆远端"></a>Git 克隆远端</h3><ol>
+<li>克隆远端项目至本地<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">git clone https://github.com</span><br></pre></td></tr></table></figure></div></li>
+<li>后续添加至暂存区、远端提交等操作相同。</li>
+</ol>
+<h3 id="Git-新建分支"><a href="#Git-新建分支" class="headerlink" title="Git 新建分支"></a>Git 新建分支</h3><ol>
+<li>克隆项目，若想开发新需求，新建分支。<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">git checkout -b newBranchName</span><br></pre></td></tr></table></figure></div></li>
+<li>查看分支状态<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">git branch</span><br></pre></td></tr></table></figure></div></li>
+<li>切换到本地新分支<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">git checkout newBranchName</span><br></pre></td></tr></table></figure></div></li>
+<li>提交至远端仓库<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">git push origin newBranchName</span><br></pre></td></tr></table></figure></div>
+(之后提交前要先拉取)</li>
+</ol>
+]]></content>
+  </entry>
 </search>
