@@ -421,4 +421,207 @@
 </ol>
 ]]></content>
   </entry>
+  <entry>
+    <title>数据库基础知识总结</title>
+    <url>/2021/03/31/mysql-basic/</url>
+    <content><![CDATA[<h2 id="数据库相关概念"><a href="#数据库相关概念" class="headerlink" title="数据库相关概念"></a>数据库相关概念</h2><ol>
+<li>DB: 数据库，作为一组有组织的数据的容器。</li>
+<li>DBMS：数据库管理系统，又称为数据库软件或产品，用于管理 DB 中的数据。</li>
+</ol>
+<ul>
+<li>基于共享文件系统的 DBMS （Access）</li>
+<li>基于客户机-服务器的 DBMS （Mysql、Oracle、SqlServer）</li>
+</ul>
+<ol start="3">
+<li>SQL：结构化查询语言，用于和 DBMS 通信的语言。</li>
+</ol>
+<h2 id="数据库的好处"><a href="#数据库的好处" class="headerlink" title="数据库的好处"></a>数据库的好处</h2><ol>
+<li>持久化数据到本地。</li>
+<li>可以实现结构化查询，方便管理。</li>
+</ol>
+<h2 id="DQL-数据查询语言"><a href="#DQL-数据查询语言" class="headerlink" title="DQL 数据查询语言"></a>DQL 数据查询语言</h2><h3 id="基础查询"><a href="#基础查询" class="headerlink" title="基础查询"></a>基础查询</h3><ol>
+<li>语法格式<br>SELECT 查询列表 FROM 表名；<br>查询列表可以是：表中的字段、常量值、表达式、函数。</li>
+<li>常用基础查询总结<br>在使用对应库前需要使用：“use 库名;” 语句进入相应库。<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 进入后边操作所需要的库</span><br><span class="line">USE myemployees;</span><br></pre></td></tr></table></figure></div></li>
+</ol>
+<ul>
+<li>查找表中的单个字段<br>SELECT 字段名 FROM 表名;<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">#查询myemployees库employees表中的last_name</span><br><span class="line">SELECT </span><br><span class="line">	last_name </span><br><span class="line">FROM </span><br><span class="line">	employees;</span><br></pre></td></tr></table></figure></div></li>
+<li>查询表中的多个字段<br>SELECT 字段名1，字段名2，字段名3 FROM 表名；<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">#查询表employees中的last_name、 salary、 email </span><br><span class="line">SELECT </span><br><span class="line">  last_name,</span><br><span class="line">  salary,</span><br><span class="line">  email </span><br><span class="line">FROM</span><br><span class="line">  employees ;</span><br></pre></td></tr></table></figure></div></li>
+<li>查询表中的所有字段<br>SELECT * FROM 表名；<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT * FROM  employees;</span><br></pre></td></tr></table></figure></div></li>
+<li>查询常量值<br>SELECT 常量值；<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT 100;</span><br><span class="line">SELECT &#x27;aqq&#x27;; #mysql中字符串和字符均可以用单引号。</span><br></pre></td></tr></table></figure></div></li>
+<li>查询表达式<br>SELECT 表达式；<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT 100*40;#执行后显示该语句运算的结果</span><br></pre></td></tr></table></figure></div></li>
+<li>起别名<br>起别名的优点：<br>1、可提高可读性。<br>2、如果查询字段有重复的内容，使用别名可以区分开来。<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">#方式一:使用AS</span><br><span class="line">SELECT 100%98 AS 结果;</span><br><span class="line">SELECT last_name AS 姓,first_name AS 名 FROM employees;</span><br><span class="line">#方式二:使用空格</span><br><span class="line">SELECT 100%98 结果;</span><br><span class="line">#查询salary然后起名为out put,由于out为关键字容易引起歧义建议加双引号。</span><br><span class="line">SELECT </span><br><span class="line">	salary &quot;out put&quot; </span><br><span class="line">FROM </span><br><span class="line">	employees;</span><br></pre></td></tr></table></figure></div></li>
+<li>去重：关键字DISTINCT<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">#查询员工所属的部门编号</span><br><span class="line">SELECT DISTINCT </span><br><span class="line">  `department_id` </span><br><span class="line">FROM</span><br><span class="line">  employees ;</span><br></pre></td></tr></table></figure></div></li>
+<li>+: 运算符</li>
+</ul>
+<ol>
+<li>加号两边两个数都为数值型作加法运算；</li>
+<li>加号两边有一个为字符串型，试图 将字符串型转化为数值型，转化成功进行加法运算，否则将字符串型转化为0然后运算;</li>
+<li>只要加号两边有一个为NULL结果一定为NULL.<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT 100+100;     #执行结果：200。</span><br><span class="line">SELECT &#x27;123&#x27;+90;    #执行结果：90</span><br><span class="line">SELECT null+89;     #执行结果：NULL</span><br></pre></td></tr></table></figure></div></li>
+</ol>
+<ul>
+<li>字符串的连接：使用CONCAT()<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT </span><br><span class="line">  CONCAT(last_name, first_name) AS 姓名 </span><br><span class="line">FROM</span><br><span class="line">  employees ;</span><br></pre></td></tr></table></figure></div>
+只要拼接的字段中有一个为NULL结果一定为NULL，可以使用IFNULL()函数,判断是否为NULL改变显示的内容。<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">#显示出表employees的first_name、last_name、commission_pct列，各个列之间用逗号连接，列头显示成OUT_PUT</span><br><span class="line">SELECT </span><br><span class="line">  CONCAT(</span><br><span class="line">    `first_name`,</span><br><span class="line">    &#x27;,&#x27;,</span><br><span class="line">    `last_name`,</span><br><span class="line">    &#x27;,&#x27;,</span><br><span class="line">    IFNULL(`commission_pct`,0)#由于commission_pct中存在NULL字段，为了防止输出出错使用IFNULL();函数判断输出。</span><br><span class="line">  ) AS OUT_PUT </span><br><span class="line">FROM</span><br><span class="line">  employees ;</span><br></pre></td></tr></table></figure></div>
+<h3 id="条件查询"><a href="#条件查询" class="headerlink" title="条件查询"></a>条件查询</h3></li>
+</ul>
+<ol>
+<li><p>语法格式</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT </span><br><span class="line">	查询列表</span><br><span class="line">FROM</span><br><span class="line">	表名</span><br><span class="line">WHERE</span><br><span class="line">	筛选条件;</span><br></pre></td></tr></table></figure></div></li>
+<li><p>分类<br>(1)按条件表达式筛选：即按照条件运算符(&gt;,&lt;,=,&gt;=,&lt;=,&lt;&gt;[不等于]，)不等于也支持其它语言中的“!=”。<br>(2)按逻辑表达式筛选：即按照逻辑运算符(and or not),也支持其它语言中常用的(&amp;&amp; || !)。<br>(3)模糊查询：like,between （） and （）,in,is null,is not null。</p>
+</li>
+<li><p>例子</p>
+<h4 id="条件表达式或逻辑表达式筛选"><a href="#条件表达式或逻辑表达式筛选" class="headerlink" title="条件表达式或逻辑表达式筛选"></a>条件表达式或逻辑表达式筛选</h4></li>
+</ol>
+<ul>
+<li>查询employees表中工资大于12000的员工信息<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT</span><br><span class="line">	*</span><br><span class="line">FROM</span><br><span class="line">	employees</span><br><span class="line">WHERE</span><br><span class="line">	salary &gt; 12000;</span><br></pre></td></tr></table></figure></div></li>
+<li>查询employees表中部门编号不等于90的员工名和部门编号<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT</span><br><span class="line">	last_name,</span><br><span class="line">	department_id</span><br><span class="line">FROM</span><br><span class="line">	employees</span><br><span class="line">WHERE</span><br><span class="line">	department_id &lt;&gt;90;</span><br></pre></td></tr></table></figure></div></li>
+<li>查询employees表中工资在10000到20000之间的员工名，工资以及奖金<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT</span><br><span class="line">	last_name,</span><br><span class="line">	salary,</span><br><span class="line">	commission_pct</span><br><span class="line">FROM</span><br><span class="line">	employees</span><br><span class="line">WHERE</span><br><span class="line">	salary &gt;= 10000 </span><br><span class="line">AND </span><br><span class="line">	salary &lt;= 20000;	</span><br></pre></td></tr></table></figure></div></li>
+<li>查询employees表中部门编号不在90到110之间，或者工资高于15000的员工信息<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT</span><br><span class="line">	*</span><br><span class="line">FROM</span><br><span class="line">	employees</span><br><span class="line">WHERE</span><br><span class="line">		department_id &lt; 90</span><br><span class="line">OR</span><br><span class="line">		department_id &gt; 110</span><br><span class="line">OR</span><br><span class="line">		salary &gt; 15000;</span><br></pre></td></tr></table></figure></div></li>
+</ul>
+<h4 id="模糊查询"><a href="#模糊查询" class="headerlink" title="模糊查询"></a>模糊查询</h4><p>like —— 一般和通配符搭配使用。</p>
+<p>通配符有：</p>
+<ul>
+<li><p>% 任意多个字符，包括0个字符，但是%之间的查询有顺序问题，例如： “%P%b%” 的查询结果是满足P在前，b在后字段；</p>
+</li>
+<li><p>_ 任意单个字段；</p>
+</li>
+<li><p>ESCAPE转义字符，用来在用到”_“和”%“匹配符时转义；</p>
+</li>
+</ul>
+<p>例子：</p>
+<ol>
+<li>like </li>
+</ol>
+<ul>
+<li>从employees表中查询员工名中包含字符a的员工信息<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT</span><br><span class="line">	*</span><br><span class="line">FROM</span><br><span class="line">	employees</span><br><span class="line">WHERE</span><br><span class="line">	last_name LIKE &quot;%a%&quot;;</span><br></pre></td></tr></table></figure></div></li>
+<li>从employees表中查询员工名中第三个字符为e,第五个字符为a的员工名和工资<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT </span><br><span class="line">	last_name,</span><br><span class="line">	salary</span><br><span class="line">FROM</span><br><span class="line">	employees</span><br><span class="line">WHERE</span><br><span class="line">	last_name LIKE &#x27;_ _e_a%&#x27;;</span><br></pre></td></tr></table></figure></div></li>
+</ul>
+<ol start="2">
+<li>转义字符的使用</li>
+</ol>
+<ul>
+<li>从employees表中查询员工名中第二个字符为_的员工名<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT </span><br><span class="line">	last_name</span><br><span class="line">FROM</span><br><span class="line">	employees</span><br><span class="line">WHERE</span><br><span class="line">	last_name LIKE &#x27;_&amp;_%&#x27; ESCAPE &#x27;&amp;&#x27;;</span><br></pre></td></tr></table></figure></div></li>
+</ul>
+<ol start="3">
+<li>between （）and （）<br>可以提高语句简洁度，包含临界值，相当于等号，但临界值顺序不可互换。</li>
+</ol>
+<ul>
+<li>从employees表中查询员工编号在100到120之间的员工信息<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT</span><br><span class="line">	*</span><br><span class="line">FROM</span><br><span class="line">	employees</span><br><span class="line">WHERE</span><br><span class="line">	//employee_id &gt;= 100 and employee_id &lt;= 120;</span><br><span class="line">	employee_id BETWEEN 100 AND 120;//上条语句的简洁表达</span><br></pre></td></tr></table></figure></div></li>
+</ul>
+<ol start="4">
+<li>in—用于判断某字段的值是否属于in列表中的某一项。<br>特点：使用in提高语句简洁度；in列表的值类型必须一致或兼容。</li>
+</ol>
+<ul>
+<li>从employees表中查询员工的工种编号是IT_PROD、AD_VP、AD_PRES中的一个员工名和编号<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT</span><br><span class="line">	last_name,</span><br><span class="line">	job_id</span><br><span class="line">FROM</span><br><span class="line">	employees</span><br><span class="line">WHERE</span><br><span class="line">	//job_id = &#x27;IT_PROD&#x27; or job_id = &#x27;AD_VP&#x27; or job_id = &#x27;AD_PRES&#x27;;</span><br><span class="line">	job_id IN(&#x27;IT_PROD&#x27;,&#x27;AD_VP&#x27;,&#x27;AD_PREs&#x27;);</span><br></pre></td></tr></table></figure></div></li>
+</ul>
+<ol start="5">
+<li>is null 、is not null、安全等于&lt;=&gt;<br>&lt;&gt;或=不能用于判断null；<br>is null和is not null 可以判断是否为null；<br>is null和is not null仅可以判断null值，可读性高；<br>&lt;=&gt;(安全等于)既可以判断null，也可以判断普通数值类型，可读性较低。</li>
+</ol>
+<ul>
+<li>从employees表中查询没有奖金的员工名和奖金率<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT</span><br><span class="line">	last_name,</span><br><span class="line">	commission_pct</span><br><span class="line">FROM</span><br><span class="line">	employees</span><br><span class="line">WHERE</span><br><span class="line">	commission_pct IS NULL;</span><br><span class="line">	//或commission_pct &lt;=&gt; NULL;</span><br></pre></td></tr></table></figure></div></li>
+</ul>
+<h3 id="排序查询"><a href="#排序查询" class="headerlink" title="排序查询"></a>排序查询</h3><ol>
+<li><p>语法格式</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT    查询列表</span><br><span class="line">FROM      表名</span><br><span class="line">【WHERE  筛选条件】</span><br><span class="line">ORDER BY  排序列表  【asc升序 或 desc降序】</span><br><span class="line">//方括号中的内容为可选部分		</span><br></pre></td></tr></table></figure></div></li>
+<li><p>注意事项<br>1、asc升序，desc降序，不写默认为升序。<br>2、order by 字句可以支持单个字段、多个字段、表达式、函数、别名。<br>3、order by子句一般是放在查询语句最后面(limit子句除外).</p>
+</li>
+<li><p>例子</p>
+</li>
+</ol>
+<ul>
+<li><p>查询员工信息，要求工资从高到低排序</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT *</span><br><span class="line">FROM employees</span><br><span class="line">ORDER BY salary DESC;</span><br></pre></td></tr></table></figure></div></li>
+<li><p>查询部门编号&gt;=90的员工信息，要求按入职时间先后进行排序【筛选条件】</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT	*</span><br><span class="line">FROM	employees</span><br><span class="line">WHERE	department_id &gt;=90</span><br><span class="line">ORDER BY hiredate ASC;</span><br></pre></td></tr></table></figure></div></li>
+<li><p>按年薪由高到低显示员工的信息和年薪【按表达式或别名排序】</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT *,</span><br><span class="line">	salary*12*(1+IFNULL(commission_pct,0)) AS 年薪</span><br><span class="line">FROM	employees</span><br><span class="line">ORDER BY 年薪 DESC;</span><br></pre></td></tr></table></figure></div></li>
+<li><p>按姓名的长度由短到长显示员工的姓名和工资,姓名长度【按函数排序】</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT	</span><br><span class="line">	LENGTH(last_name) 姓名长度,</span><br><span class="line">	last_name,</span><br><span class="line">	selary</span><br><span class="line">FROM	</span><br><span class="line">	employees</span><br><span class="line">ORDER BY LENGTH(last_name) ASC;</span><br></pre></td></tr></table></figure></div></li>
+<li><p>查询员工信息，要求先按照工资升序，再按照员工编号降序(即先按照工资升序排列，若是工资相同的，则按照编号降序)【按多个字段排序】</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="code"><pre><span class="line">SELECT	*</span><br><span class="line">FROM	employees</span><br><span class="line">ORDER BY salary ASC,</span><br><span class="line">		 employees_id DESC;</span><br></pre></td></tr></table></figure></div>
+<h3 id="多表查询"><a href="#多表查询" class="headerlink" title="多表查询"></a>多表查询</h3></li>
+<li><p>前提条件：两个表有联系，通过外键关联。</p>
+</li>
+</ul>
+<ol>
+<li>普通内连接<br>语法： 关键字 … inner join … on 条件；<br>注意：</li>
+</ol>
+<ul>
+<li>在 inner join关键字之前写表1</li>
+<li>在 inner join关键字以后写表2</li>
+<li>on的后面写条件：（表1是dept，表2是emp）dept.did = emp.dno</li>
+</ul>
+<p>语句：select * from dept inner join emp on dept.did = emp.dno；</p>
+<ol start="2">
+<li>隐式内连接</li>
+</ol>
+<ul>
+<li>语法：select…from 表1，表2 where 表1.字段 = 表2.字段；</li>
+<li>语句：select * from dept，emp where dept.did = emp.dno；</li>
+<li>别名：select * from dept d，emp e where d.did = e.dno；</li>
+<li>指定字段：select d.dname，e.ename，e.sal from dept d，emp e where d.did = e.dno；</li>
+</ul>
+<ol start="3">
+<li>多表查询之外连接</li>
+</ol>
+<p><strong>左外连接（左连接）</strong></p>
+<ul>
+<li>语法： …表1  left outer join 表2 on 表1.字段 = 表2.字段</li>
+<li>语句：select * from dept left outer join emp on dept.did = emp.dno；</li>
+<li>特点：看左表，默认把左表中全部数据都查询出来，再查询出有关联的数据。</li>
+</ul>
+<p><strong>右外连接（右连接）</strong></p>
+<ul>
+<li>语法：…表1  right outer join 表2 on 表1.字段 = 表2.字段</li>
+<li>语句：select * from dept right outer join emp on dept.did = emp.dno；</li>
+</ul>
+<ol start="4">
+<li>总结<br>1、笛卡尔积<br>两个结果的乘积，数据是重复，目的：去除掉重复的数据。<br>2、内连接和外连接的数据的区别<br>如果数据正常的话，不管是内连接和外连接，查询的结果都是一样的。</li>
+</ol>
+<ul>
+<li>内连接查询的结果都是有关系的数据</li>
+<li>左连接，先看SQL语句中哪个表是左表，把左表中的数据全部都查询出来，和有关系的数据也会查询出来。</li>
+<li>右连接，先SQL语句中的那个表是右表，把右表中的数据全部查询出来，和有关系数据查询出来。</li>
+</ul>
+<p><strong>相关例子</strong></p>
+<ul>
+<li>内连接<br>select * from dept d，emp e where d.did = e.dno；<br>查询的结果都是主外键关联的数据</li>
+<li>左连接<br>select * from dept left outer join emp on dept.did = emp.dno；<br>把左表中所有的数据全部都查询出来和有关联的数据</li>
+<li>右连接<br>select * from dept right outer join emp on dept.did = emp.dno；<br>把右表中所有的数据全部都查询出来和有关联的数据</li>
+</ul>
+<h3 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h3><ol>
+<li>子查询，嵌套查询，一个select语句不能查询出结果的，可以通过多个select语句来查询结果。</li>
+<li>例子：查询出英语成绩大于英语平均分的同学</li>
+</ol>
+<ul>
+<li>先计算出英语的平均分（select avg（english）from stu；）</li>
+<li>再编写select语句<br>select username，english from stu where english &gt;（select avg （english）from stu）；</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
+    <title>计算机网络与实际生活的联系思考</title>
+    <url>/2021/05/16/thinking-between-network-and-life/</url>
+    <content><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在我们的日常生活中，网络几乎是不可或缺的一部分。而网络中经常出现的一些问题有的大家有很熟悉，以前没有深入的研究过，现在学习了计算机网络这门课程，可以从现有知识的角度来探讨一下这些问题背后的原因所在。</p>
+<h2 id="网页打开速度差异"><a href="#网页打开速度差异" class="headerlink" title="网页打开速度差异"></a>网页打开速度差异</h2><p>就拿我们生活中的实例来说，经常会有在寝室中，大家都连的校园网，但是打开网页的速度却有明显差别的情况。可能别人的网页已经加载完毕，而自己的网页却还在加载中。导致这一情况出现的原因有很多，比如电脑本身问题。可能磁盘碎片从不整理，开机启动项过多，或者桌面文件非常多，电脑垃圾太多，这些都有可能导致加载过慢。从位置方面来说，可能加载快的电脑离信号发射源近一些，这样信号更强，受其他信号的干扰更少，所以速度会好的多。无线信号的干扰可能有WLAN网络自身的互干扰。对一个大的WLAN网络来说，尤其是高密度部署的网络，同一信道常常需要被不同AP使用。而这些AP之间存在着重复区域时，就存在互相干扰问题。如果同频AP之间不可见但覆盖区域有交集，则对处于交集区域的Client而言可能会形成隐藏节点或暴露节点问题。隐藏节点和暴露节点会产生两个方面的问题，其一是报文发送时需要退避或不断重传；其二是由于报文重传时会降低报文发送的物理速率，导致同一AP的影响范围扩大，也使得报文发送占用更多的空口时长，冲突几率加大，引起更多的重传。这样就会导致发送数据的效率不同，从而加载的速度也有所差异。其次，可能是因为电脑网卡和无线路由不兼容导致的。网卡是局域网中连接计算机和传输介质的接口，不仅能实现与局域网传输介质之间的物理连接和电信号匹配，还涉及帧的发送与接收，帧的封装与拆封，介质访问控制，数据的编码与解码以及数据缓存的功能等。当网卡和无线路由不兼容时，会降低功能效率，影响到帧的发送和接受速度。有的时候还会短时间的出现连接上校园网但无法上网的情况，可能是因为无线路由器的DHCP出了问题，无法正常分配IP地址了。系统默认地给了一个IP地址，不过由于和无线路由器不是一个IP段，所以无法正常上网。</p>
+<h2 id="页面找不到"><a href="#页面找不到" class="headerlink" title="页面找不到"></a>页面找不到</h2><p>我们在打开页面的时候，经常出现页面找不到的情况。常见的会出现“无法访问此网站”或“404 not found”这样的提示词。若显示无法访问此网站，有可能是因为国内不能访问国外受限网站导致的。也有可能是因为使用了http协议来访问了需要使用https协议访问的站点。</p>
+<h3 id="ERR-NAME-RESOLUTION-FAILED"><a href="#ERR-NAME-RESOLUTION-FAILED" class="headerlink" title="ERR_NAME_RESOLUTION_FAILED"></a>ERR_NAME_RESOLUTION_FAILED</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/thinking-between-network-and-life/ERR_NAME_RESOLUTION_FAILED.png"
+                      alt="DNS配置出错图" title="DNS配置出错图"
+                ><br>当错误代码是”ERR_NAME_RESOLUTION_FAILED”或”ERR_CONNECTION_REFUSED”时，则可能DNS配置出现了问题。可能由于网站域名服务器故障或网站服务器有故障。另外也有一种情况是网络服务商的网络服务服务器出现故障，也会出现类似情况，主要由于线路堵塞导致，常见某个地方区域网站无法访问，具有区域性。虽然我们多数人上网都不会去设置DNS，一般都是采用自动获取，不过不少局域网都需要固定IP地址，选择固定IP地址，我们就需要输入DNS地址了，而DNS输入错误就会导致网页打不开。</p>
+<h3 id="404-not-found"><a href="#404-not-found" class="headerlink" title="404 not found"></a>404 not found</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/thinking-between-network-and-life/404-not-found.png"
+                      alt="404出错图" title="404出错图"
+                ><br>404 not found，是HTTP对网页错误情况返回的一种状态码，当用户在浏览器中输入网址时，服务器会根据输入的地址判断是否有对应的网页信息，如果没有对应信息，说明用户输入的可能是一串无效的链接，服务器就会向用户返回404 not found状态码，告诉用户没有找到对应的网页信息。可能是由于更换了网站程序等存在找不到的现象，如网站更换服务器，部分静态文件没有复制到新的服务器上，或者是因为新服务器的文件夹权限问题导致文件没有读取权限，因此出现404 not found问题。也有可能是因为动态规则变更，导致页面出现404not found错误也比较常见。当一个动态页面因为伪静态规则变更，会有可能导致URL的变更，那么前面的URL将会失效，当我们规则变更以后还打开前面的URL自然会出现404not found错误提示。此外还可能是因为DNS设置阻止，这时我们需要使用代理浏览器才可以正常浏览。</p>
+<h2 id="IP-地址冲突"><a href="#IP-地址冲突" class="headerlink" title="IP 地址冲突"></a>IP 地址冲突</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/images/thinking-between-network-and-life/ip-address-conflict.png"
+                      alt="IP 地址冲突图" title="IP 地址冲突图"
+                ><br>电脑接入网络后，会发送免费ARP(Gratuitous ARP)，向整个二层网络广播自己的IP地址与MAC地址信息，以便让别的终端学习，当A侦测到有终端广播的IP地址与自己一致时，电脑便会提示IP冲突了。当两个通信中端被分配两个相同的IP地址时，就会发生IP地址冲突。IP地址冲突发生在两个终端之间，会使其中一个或者他们两个都无法进行网络操作。造成这一现象的原因可能是因为系统管理员在一个LAN（局域网）中的两台电脑或设备上分配了同样的静态IP地址，或者系统管理员给一台电脑分配了一个在本地DHCP（动态主机配置协议）范围内的IP地址，相同的IP地址被本地DHCP服务器自动的分配给了本地主机。客户端收到服务器提供的IP地址后，会在整个局域网检测此IP是否被占用，手段就是最简单常用的PING。在同事网络环境，部分电脑开启了防火墙默认拒绝外部终端ping request。客户端检测此IP无法PING通，则会回复服务器接收此IP，于是出现IP冲突。也有可能是因为DHCP服务器发生故障使得将相同的IP地址自动分配给多个电脑。 IP地址冲突后，可以手动修改自己的IP地址，不过这种方法不适合在大型局域网中使用，只适合在很小的网络环境中采用。还可以利用交换机的端口把不同的部门隔离开来解决，这是因为利用交换机可以对不同的区域实行不同的管理，经过分割的网段之间互不干扰，可以在一定程度上解决IP地址冲突的问题。</p>
+]]></content>
+  </entry>
 </search>
