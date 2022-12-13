@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>在搭建 blog 过程中发现的 cdn 与图片问题</title>
-    <url>/2020/10/30/%E5%9C%A8%E6%90%AD%E5%BB%BA-blog-%E8%BF%87%E7%A8%8B%E4%B8%AD%E5%8F%91%E7%8E%B0%E7%9A%84-cdn-%E4%B8%8E%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
     <title>离散数学两道重思考</title>
     <url>/2020/11/15/discrete-mathematical-experiment/</url>
     <content><![CDATA[<h3 id="命题逻辑推理"><a href="#命题逻辑推理" class="headerlink" title="命题逻辑推理"></a>命题逻辑推理</h3><h4 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h4><p>根据下面的命题，使用命题逻辑推理的方法确定谁是作案者，写出推理过程。<br>一个公安人员审查一件盗窃案，已知的事实如下：<br>（1）A或B盗窃了x;<br>（2）若A盗窃了x，则作案时间不能发生在午夜前；<br>（3）若B证词正确，则在午夜时屋里灯光未灭；<br>（4）若B证词不正确，则作案时间发生在午夜前；<br>午夜时屋里灯光灭了；</p>
